@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=960, initial-scale=1">
+  <title>SEO Backlinks Tracker — README motion preview</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <style>
+    :root { --bg:#f7f7f7; --paper:#fff; --ink:#111; --muted:#777; --line:#e2e2e2; --green:#0b6b4f; --green-soft:#e8f3ee; --blue:#3b82f6; }
+    * { box-sizing:border-box; }
+    html,body { margin:0; width:960px; height:540px; overflow:hidden; background:#f2f3f1; color:var(--ink); font-family:Inter,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+    .clip { width:960px; height:540px; background:var(--bg); overflow:hidden; position:relative; }
+    .topbar { height:52px; display:flex; align-items:center; justify-content:space-between; padding:0 34px; border-bottom:1px solid var(--line); background:#fbfbfa; }
+    .brand { display:flex; align-items:center; gap:4px; font-size:17px; font-weight:850; letter-spacing:-.06em; }
+    .slash { color:var(--green); font-size:23px; transform:rotate(-12deg); display:inline-block; }
+    .tagline { color:#777; font-size:9px; font-weight:700; letter-spacing:.17em; text-transform:uppercase; }
+    .top-actions { display:flex; align-items:center; gap:9px; font-size:9px; text-transform:uppercase; letter-spacing:.08em; color:#555; }
+    .project { border:1px solid var(--line); background:#fff; padding:7px 10px; font-weight:700; }
+    .quota { color:var(--green); background:var(--green-soft); border:1px solid #d2e7dc; padding:7px 9px; font-weight:800; }
+    .content { position:relative; height:488px; padding:19px 34px 20px; }
+    .hero { height:147px; display:grid; grid-template-columns:1.28fr .92fr; gap:20px; align-items:center; }
+    .eyebrow { margin:0 0 7px; color:var(--green); font-size:9px; font-weight:800; letter-spacing:.17em; text-transform:uppercase; }
+    h1 { margin:0; font-size:32px; line-height:.98; letter-spacing:-.055em; font-weight:900; }
+    h1 span { color:var(--green); }
+    .intro { margin:9px 0 0; color:#666; font-size:11px; line-height:1.45; max-width:425px; }
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); background:#fff; border:1px solid var(--line); padding:14px 8px; }
+    .stat { min-width:0; padding:2px 11px; border-right:1px solid var(--line); }
+    .stat:last-child { border:0; }
+    .value { display:block; width:72px; min-height:31px; transform-origin:left center; font-size:27px; font-weight:850; letter-spacing:-.06em; font-variant-numeric:tabular-nums; color:var(--ink); }
+    .stat:nth-child(2) .value { color:var(--green); }
+    .label { display:block; margin-top:2px; color:#777; font-size:8px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap; }
+    .accent-line { width:44px; height:3px; background:var(--green); margin-top:10px; transform-origin:left center; }
+    .tabs { height:37px; display:flex; align-items:center; gap:25px; border-bottom:1px solid var(--line); border-top:1px solid var(--line); color:#999; font-size:9px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; }
+    .tab { height:100%; display:flex; align-items:center; position:relative; }
+    .tab.active { color:var(--ink); }
+    .tab-underline { position:absolute; bottom:-1px; left:0; right:0; height:2px; background:var(--green); transform:scaleX(0); transform-origin:left center; }
+    #catalog-underline { transform:scaleX(1); }
+    .panel-wrap { position:relative; height:252px; padding-top:13px; }
+    .catalog,.dashboard { position:absolute; inset:13px 0 0; }
+    .catalog { opacity:1; transform:translateY(0); }
+    .dashboard { opacity:0; transform:translateY(12px) scale(.99); }
+    .filterbar { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+    .searchbox,.filter { height:27px; display:flex; align-items:center; border:1px solid var(--line); background:#fff; color:#777; font-size:9px; padding:0 10px; }
+    .searchbox { width:235px; gap:7px; }
+    .search-icon { width:10px; height:10px; border:1.5px solid #aaa; border-radius:50%; position:relative; }
+    .search-icon:after { content:""; position:absolute; width:4px; height:1.5px; background:#aaa; right:-3px; bottom:-1px; transform:rotate(45deg); }
+    .filter { text-transform:uppercase; letter-spacing:.08em; font-weight:700; }
+    .results { margin-left:auto; color:#888; font-size:9px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+    .table { border:1px solid var(--line); background:#fff; }
+    .thead,.row { display:grid; grid-template-columns:2.15fr .55fr .95fr 1.25fr; align-items:center; padding:0 14px; }
+    .thead { height:30px; background:#fafafa; color:#888; font-size:8px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; border-bottom:1px solid var(--line); }
+    .row { height:47px; border-bottom:1px solid #eee; font-size:10px; }
+    .row:last-child { border-bottom:0; }
+    .source-name { font-weight:800; font-size:10px; }
+    .domain { display:block; color:#888; margin-top:2px; font-family:ui-monospace,monospace; font-size:9px; }
+    .dr { display:inline-block; padding:3px 6px; color:var(--green); background:var(--green-soft); border:1px solid #cce4d8; font-family:ui-monospace,monospace; font-weight:800; }
+    .follow { color:#888; font-size:9px; }
+    .follow.good { color:var(--green); font-weight:700; }
+    .status-pill { display:inline-flex; align-items:center; position:relative; min-width:99px; height:24px; padding:0 9px; border:1px solid var(--line); border-radius:3px; background:#fff; color:#333; font-size:8px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; overflow:visible; }
+    .status-pill .after { position:absolute; left:9px; color:var(--green); opacity:0; transform:translateY(6px); white-space:nowrap; }
+    .ripple { position:absolute; left:50%; top:50%; width:32px; height:32px; border-radius:50%; border:1.5px solid var(--green); transform:translate(-50%,-50%) scale(0); opacity:0; pointer-events:none; }
+    .tip { margin-top:8px; color:#888; font-size:8px; letter-spacing:.08em; text-transform:uppercase; }
+    .dashboard-head { height:27px; display:flex; align-items:flex-start; justify-content:space-between; border-bottom:1px solid var(--line); margin-bottom:9px; }
+    .dashboard-title { font-size:13px; font-weight:900; letter-spacing:-.025em; text-transform:uppercase; }
+    .demo-label { color:var(--green); font-size:8px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; }
+    .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:9px; }
+    .kpi { height:56px; padding:8px 10px; background:#fff; border:1px solid var(--line); }
+    .kpi-label { color:#888; font-size:7px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .kpi-value { display:inline-block; margin-top:4px; font-size:18px; font-weight:900; letter-spacing:-.05em; font-variant-numeric:tabular-nums; }
+    .kpi:last-child .kpi-value,.kpi:nth-child(3) .kpi-value { color:var(--green); }
+    .analytics { display:grid; grid-template-columns:.9fr 1.1fr; gap:9px; height:126px; }
+    .chart-card,.bands-card { background:#fff; border:1px solid var(--line); padding:10px 12px; }
+    .card-eyebrow { color:#888; font-size:7px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+    .card-title { margin-top:2px; font-size:9px; font-weight:900; text-transform:uppercase; }
+    .chart-content { display:flex; align-items:center; gap:11px; margin-top:4px; }
+    .donut { width:76px; height:76px; flex:none; transform:rotate(-90deg); }
+    .donut-bg { fill:none; stroke:#edf0ed; stroke-width:11; }
+    .donut-progress { fill:none; stroke:var(--green); stroke-width:11; stroke-dasharray:226.2; stroke-dashoffset:226.2; stroke-linecap:butt; }
+    .legend { font-size:8px; line-height:1.85; color:#555; }
+    .legend-row { display:flex; align-items:center; gap:5px; white-space:nowrap; }
+    .dot { width:6px; height:6px; border-radius:1px; background:var(--green); }
+    .bands-card .card-title { margin-bottom:7px; }
+    .band { margin-top:5px; }
+    .band-line { display:flex; justify-content:space-between; color:#555; font-size:7px; font-family:ui-monospace,monospace; margin-bottom:3px; }
+    .track { height:4px; background:#eee; overflow:hidden; }
+    .fill { width:100%; height:100%; background:var(--green); transform:scaleX(0); transform-origin:left center; }
+    .footnote { position:absolute; left:34px; bottom:9px; color:#999; font-size:7px; letter-spacing:.08em; text-transform:uppercase; }
+    .cursor { position:absolute; z-index:5; left:0; top:0; opacity:0; width:20px; height:24px; transform-origin:top left; pointer-events:none; filter:drop-shadow(0 1px 1px #fff); }
+  </style>
+</head>
+<body>
+  <main class="clip" id="clip" data-duration="8.8">
+    <header class="topbar">
+      <div class="brand"><span>SEO</span><span class="slash">/</span><span>BL</span></div>
+      <div class="tagline">Curated directory &amp; submission tracker</div>
+      <div class="top-actions"><span class="project">◉ &nbsp; IntoAEC</span><span class="quota">0 / 5 Free</span></div>
+    </header>
+    <section class="content">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">194 curated directory sources · 2026 edition</p>
+          <h1>AWESOME FREE<br><span>SEO BACKLINKS</span></h1>
+          <p class="intro">Find directories. Track every submission. Keep live links and campaign progress in one clear workspace.</p>
+          <div class="accent-line"></div>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="value" id="sources">0</span><span class="label">Catalog sources</span></div>
+          <div class="stat"><span class="value" id="dofollow">0</span><span class="label">Dofollow</span></div>
+          <div class="stat"><span class="value" id="highdr">0</span><span class="label">DR 90+</span></div>
+        </div>
+      </div>
+      <nav class="tabs"><span class="tab active" id="catalog-tab">Directories catalog (194)<i class="tab-underline" id="catalog-underline"></i></span><span class="tab" id="analytics-tab">Analytics &amp; reporting<i class="tab-underline" id="analytics-underline"></i></span></nav>
+      <div class="panel-wrap">
+        <section class="catalog" id="catalog-panel">
+          <div class="filterbar"><div class="searchbox"><i class="search-icon"></i><span>Search directories…</span></div><span class="filter">DR band&nbsp;⌄</span><span class="filter">Follow&nbsp;⌄</span><span class="filter">Status&nbsp;⌄</span><span class="results">194 sources</span></div>
+          <div class="table">
+            <div class="thead"><span>Source / domain</span><span>DR</span><span>Link type</span><span>Workflow status</span></div>
+            <div class="row"><span><span class="source-name">G2</span><span class="domain">g2.com</span></span><span><b class="dr">98</b></span><span class="follow">● &nbsp;Nofollow</span><span><span class="status-pill">Unsubmitted</span></span></div>
+            <div class="row"><span><span class="source-name">Blogger.com</span><span class="domain">blogger.com</span></span><span><b class="dr">94</b></span><span class="follow good">● &nbsp;Dofollow</span><span><span class="status-pill" id="status-target"><span class="before">Unsubmitted</span><span class="after">✓ &nbsp;Secured</span><i class="ripple" id="ripple-1"></i><i class="ripple" id="ripple-2"></i><i class="ripple" id="ripple-3"></i></span></span></div>
+            <div class="row"><span><span class="source-name">AI Infinity</span><span class="domain">docs.google.com</span></span><span><b class="dr">96</b></span><span class="follow">● &nbsp;Unverified</span><span><span class="status-pill">Unsubmitted</span></span></div>
+          </div>
+          <div class="tip">One-click source links · statuses · live URL notes · campaign history</div>
+        </section>
+        <section class="dashboard" id="dashboard-panel">
+          <div class="dashboard-head"><div><div class="card-eyebrow">Campaign performance</div><div class="dashboard-title">SEO backlinks dashboard</div></div><span class="demo-label">Illustrative sample · Blogger.com secured</span></div>
+          <div class="kpis">
+            <div class="kpi"><div class="kpi-label">Total inventory</div><span class="kpi-value" id="kpi-total">0</span></div>
+            <div class="kpi"><div class="kpi-label">Tracked submissions</div><span class="kpi-value" id="kpi-tracked">0</span></div>
+            <div class="kpi"><div class="kpi-label">Secured backlinks</div><span class="kpi-value" id="kpi-secured">0</span></div>
+            <div class="kpi"><div class="kpi-label">Dofollow ratio</div><span class="kpi-value" id="kpi-ratio">0%</span></div>
+          </div>
+          <div class="analytics">
+            <div class="chart-card"><div class="card-eyebrow">Workflow distribution</div><div class="card-title">Submission outcomes</div><div class="chart-content"><svg class="donut" viewBox="0 0 100 100"><circle class="donut-bg" cx="50" cy="50" r="36"></circle><circle class="donut-progress" id="donut-progress" cx="50" cy="50" r="36"></circle></svg><div class="legend"><div class="legend-row"><i class="dot"></i>Secured &nbsp;<b>1</b></div><div>Submitted &nbsp;0</div><div>On progress &nbsp;0</div></div></div></div>
+            <div class="bands-card"><div class="card-eyebrow">Authority bands</div><div class="card-title">Secured links by DR tier</div>
+              <div class="band"><div class="band-line"><b>DR 90+</b><span>1 / 18 secured</span></div><div class="track"><div class="fill" id="fill-90"></div></div></div>
+              <div class="band"><div class="band-line"><b>DR 80–89</b><span>0 / 14 secured</span></div><div class="track"><div class="fill" id="fill-80"></div></div></div>
+              <div class="band"><div class="band-line"><b>DR 70–79</b><span>0 / 32 secured</span></div><div class="track"><div class="fill" id="fill-70"></div></div></div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="footnote">Local-first campaign tracking · Sample activity shown for illustration</div>
+      <svg class="cursor" id="cursor" width="20" height="24" viewBox="0 0 20 24" aria-hidden="true"><path d="M2 1v17l4.5-4.1 3.2 7 3-1.4-3.4-6.7 6-.3L2 1z" fill="#111" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg>
+    </section>
+  </main>
+  <script>
+    // One paused, seek-safe timeline; renderer advances it explicitly for deterministic GIF frames.
+    const tl = gsap.timeline({ paused: true });
+    const counters = { sources: 0, dofollow: 0, highdr: 0, total: 0, tracked: 0, secured: 0, ratio: 0 };
+    const setCounter = (id, value, suffix = '') => { document.getElementById(id).textContent = `${Math.round(value).toLocaleString()}${suffix}`; };
+    const introNumbers = [
+      ['sources', 194], ['dofollow', 95], ['highdr', 18]
+    ];
+    introNumbers.forEach(([key, end]) => {
+      const node = document.getElementById(key);
+      tl.to(counters, { [key]: end, duration: 1.25, ease: 'power3.out', onUpdate: () => setCounter(key, counters[key]) }, 0.25);
+      tl.fromTo(node, { scale: 0.55 }, { scale: 1, duration: 1.25, ease: 'power3.out' }, 0.25);
+    });
+    tl.fromTo('.accent-line', { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: 'power3.out' }, 0.35);
+    tl.fromTo('.row', { y: 9, opacity: 0 }, { y: 0, opacity: 1, duration: 0.38, stagger: 0.09, ease: 'power2.out' }, 0.9);
+
+    const target = document.getElementById('status-target').getBoundingClientRect();
+    const content = document.querySelector('.content').getBoundingClientRect();
+    const cursor = document.getElementById('cursor');
+    const clickX = target.left + target.width * 0.5 - content.left;
+    const clickY = target.top + target.height * 0.5 - content.top;
+    tl.fromTo(cursor, { x: 375, y: 186, opacity: 0, scale: 1 }, { x: clickX - 3, y: clickY - 2, opacity: 1, duration: 0.62, ease: 'power2.inOut' }, 2.05);
+    tl.to(cursor, { scale: 0.84, duration: 0.08, yoyo: true, repeat: 1, ease: 'power2.inOut' }, 2.72);
+    tl.to('#status-target', { scale: 0.97, duration: 0.08, yoyo: true, repeat: 1, ease: 'power2.inOut' }, 2.72);
+    tl.to(['#ripple-1','#ripple-2','#ripple-3'], { scale: 2.8, opacity: 0, duration: 0.58, stagger: 0.08, ease: 'power2.out', immediateRender: false }, 2.82);
+    tl.to('.before', { opacity: 0, y: -5, duration: 0.16, ease: 'power1.out' }, 3.08);
+    tl.fromTo('.after', { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.24, ease: 'power2.out' }, 3.17);
+    tl.to(cursor, { opacity: 0, duration: 0.15 }, 3.55);
+    tl.to('#catalog-tab', { color: '#999', duration: 0.18 }, 3.72);
+    tl.to('#analytics-tab', { color: '#111', duration: 0.18 }, 3.72);
+    tl.to('#catalog-underline', { scaleX: 0, duration: 0.3, ease: 'power2.out' }, 3.72);
+    tl.to('#analytics-underline', { scaleX: 1, duration: 0.3, ease: 'power2.out' }, 3.72);
+    tl.to('#catalog-panel', { opacity: 0, y: -8, duration: 0.35, ease: 'power2.inOut' }, 3.85);
+    tl.to('#dashboard-panel', { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: 'power2.out' }, 3.9);
+
+    [['total',194,'kpi-total',''],['tracked',1,'kpi-tracked',''],['secured',1,'kpi-secured',''],['ratio',100,'kpi-ratio','%']].forEach(([key,end,id,suffix]) => {
+      const node = document.getElementById(id);
+      tl.to(counters, { [key]: end, duration: 0.8, ease: 'power3.out', onUpdate: () => setCounter(id, counters[key], suffix) }, 4.05);
+      tl.fromTo(node, { scale: 0.65 }, { scale: 1, duration: 0.8, ease: 'power3.out' }, 4.05);
+    });
+    tl.to('#donut-progress', { strokeDashoffset: 0, duration: 0.9, ease: 'power2.out' }, 4.25);
+    tl.to('#fill-90', { scaleX: 1/18, duration: 0.9, ease: 'power2.out' }, 4.3);
+    tl.to('#fill-80', { scaleX: 0, duration: 0.9, ease: 'power2.out' }, 4.3);
+    tl.to('#fill-70', { scaleX: 0, duration: 0.9, ease: 'power2.out' }, 4.3);
+
+    // Restore the opening state before the GIF loops; each sample is still a pure timeline seek.
+    tl.to('#dashboard-panel', { opacity: 0, y: 12, scale: 0.99, duration: 0.32, ease: 'power2.inOut' }, 7.45);
+    tl.to('#catalog-panel', { opacity: 1, y: 0, duration: 0.32, ease: 'power2.out' }, 7.48);
+    tl.to('#analytics-tab', { color: '#999', duration: 0.18 }, 7.48);
+    tl.to('#catalog-tab', { color: '#111', duration: 0.18 }, 7.48);
+    tl.to('#catalog-underline', { scaleX: 1, duration: 0.3, ease: 'power2.out' }, 7.48);
+    tl.to('#analytics-underline', { scaleX: 0, duration: 0.3, ease: 'power2.out' }, 7.48);
+    tl.to('.after', { opacity: 0, y: 6, duration: 0.12 }, 7.65);
+    tl.to('.before', { opacity: 1, y: 0, duration: 0.12 }, 7.65);
+    tl.to(counters, { sources: 0, dofollow: 0, highdr: 0, duration: 0.65, ease: 'power2.in', onUpdate: () => { introNumbers.forEach(([key]) => setCounter(key, counters[key])); } }, 7.8);
+    tl.to(counters, { total: 0, tracked: 0, secured: 0, ratio: 0, duration: 0.4, ease: 'power2.in', onUpdate: () => { setCounter('kpi-total', counters.total); setCounter('kpi-tracked', counters.tracked); setCounter('kpi-secured', counters.secured); setCounter('kpi-ratio', counters.ratio, '%'); } }, 7.8);
+    introNumbers.forEach(([key]) => tl.to(`#${key}`, { scale: 0.55, duration: 0.65, ease: 'power2.in' }, 7.8));
+    ['kpi-total','kpi-tracked','kpi-secured','kpi-ratio'].forEach((id) => tl.to(`#${id}`, { scale: 0.65, duration: 0.4, ease: 'power2.in' }, 7.8));
+    tl.to(cursor, { opacity: 0, duration: 0.08 }, 7.8);
+    tl.to('.row', { opacity: 0, y: 9, duration: 0.38, stagger: 0.09, ease: 'power2.in' }, 7.8);
+    tl.to('.accent-line', { scaleX: 0, duration: 0.35, ease: 'power2.in' }, 7.8);
+    tl.to('#donut-progress', { strokeDashoffset: 226.2, duration: 0.2 }, 7.75);
+    tl.to(['#fill-90','#fill-80','#fill-70'], { scaleX: 0, duration: 0.2 }, 7.75);
+
+    // Register only after the complete timeline has been built.
+    window.__timelines = [tl];
+    window.renderAt = (seconds) => { tl.seek(seconds, false); return true; };
+    window.renderAt(0);
+  </script>
+</body>
+</html>
