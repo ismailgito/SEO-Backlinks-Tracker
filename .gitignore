@@ -1,0 +1,52 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# Next.js build output (any depth — stray artifacts must never be committed)
+.next/
+/out/
+
+# Production build output
+/build
+/dist
+
+# Debug & logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment files
+.env
+.env*.local
+!.env.example
+
+# Vercel
+.vercel
+
+# TypeScript / Build cache
+*.tsbuildinfo
+
+# Supabase local / temporary files
+.supabase/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+
+# IDE & Editor settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Agent tool metadata
+.freebuff/

@@ -1,0 +1,2636 @@
+[
+  {
+    "id": "bl-1-g2",
+    "name": "G2",
+    "dr": 98,
+    "dr_band": "90+",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.g2.com/products/new",
+    "domain": "g2.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-2-gravatar",
+    "name": "Gravatar",
+    "dr": 97,
+    "dr_band": "90+",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://gravatar.com/",
+    "domain": "gravatar.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-3-ai-infinity",
+    "name": "AI Infinity",
+    "dr": 96,
+    "dr_band": "90+",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://docs.google.com/forms/d/e/1FAIpQLSeuaZvj-s7KkI5Zp41q9LX0i9suH61c7JR2qe6sBdDtP9r9Sg/viewform",
+    "domain": "docs.google.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-4-blogger-com",
+    "name": "Blogger.com",
+    "dr": 94,
+    "dr_band": "90+",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://Blogger.com",
+    "domain": "blogger.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-5-medium",
+    "name": "Medium",
+    "dr": 94,
+    "dr_band": "90+",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://medium.com/",
+    "domain": "medium.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-6-tumblr-com",
+    "name": "Tumblr.com",
+    "dr": 94,
+    "dr_band": "90+",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://Tumblr.com",
+    "domain": "tumblr.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-7-flickr",
+    "name": "flickr",
+    "dr": 94,
+    "dr_band": "90+",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://flickr.com",
+    "domain": "flickr.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-8-linktr-ee",
+    "name": "linktr.ee",
+    "dr": 94,
+    "dr_band": "90+",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://linktr.ee/register/select-plan",
+    "domain": "linktr.ee",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-9-substack",
+    "name": "Substack",
+    "dr": 93,
+    "dr_band": "90+",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://substack.com",
+    "domain": "substack.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-10-jimdo",
+    "name": "Jimdo",
+    "dr": 92,
+    "dr_band": "90+",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://Jimdo.com",
+    "domain": "jimdo.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-11-source-forge",
+    "name": "Source Forge",
+    "dr": 92,
+    "dr_band": "90+",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://sourceforge.net/software/vendors/new",
+    "domain": "sourceforge.net",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-12-ai-tools-neil-patel",
+    "name": "AI Tools Neil Patel",
+    "dr": 91,
+    "dr_band": "90+",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://aitools.neilpatel.com/submit",
+    "domain": "aitools.neilpatel.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-13-clutch",
+    "name": "Clutch",
+    "dr": 91,
+    "dr_band": "90+",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://clutch.co/get-listed",
+    "domain": "clutch.co",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-14-gartner",
+    "name": "Gartner",
+    "dr": 91,
+    "dr_band": "90+",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.gartner.com/en/digital-markets/claim-profile",
+    "domain": "gartner.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-15-proven-expert",
+    "name": "Proven Expert",
+    "dr": 91,
+    "dr_band": "90+",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "http://provenexpert.com/",
+    "domain": "provenexpert.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-16-crunchbase",
+    "name": "Crunchbase",
+    "dr": 90,
+    "dr_band": "90+",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.crunchbase.com/add-new",
+    "domain": "crunchbase.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-17-strikingly-com",
+    "name": "Strikingly.com",
+    "dr": 90,
+    "dr_band": "90+",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://Strikingly.com",
+    "domain": "strikingly.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-18-toolsfine",
+    "name": "ToolsFine",
+    "dr": 90,
+    "dr_band": "90+",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://tally.so/r/3qVzOG",
+    "domain": "tally.so",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-19-startup88",
+    "name": "Startup88",
+    "dr": 88,
+    "dr_band": "80–89",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://startup88.typeform.com/to/CRjWqM",
+    "domain": "startup88.typeform.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-20-webs-com",
+    "name": "Webs.com",
+    "dr": 88,
+    "dr_band": "80–89",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://Webs.com",
+    "domain": "webs.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-21-finances-online",
+    "name": "Finances Online",
+    "dr": 87,
+    "dr_band": "80–89",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://financesonline.com/add-product/",
+    "domain": "financesonline.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-22-site123-com",
+    "name": "Site123.com",
+    "dr": 87,
+    "dr_band": "80–89",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://Site123.com",
+    "domain": "site123.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-23-devpost",
+    "name": "DevPost",
+    "dr": 86,
+    "dr_band": "80–89",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://devpost.com/software/new",
+    "domain": "devpost.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-24-f6s",
+    "name": "F6S",
+    "dr": 86,
+    "dr_band": "80–89",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.f6s.com",
+    "domain": "f6s.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-25-notion",
+    "name": "Notion",
+    "dr": 85,
+    "dr_band": "80–89",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://notion.com",
+    "domain": "notion.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-26-webnode",
+    "name": "Webnode",
+    "dr": 84,
+    "dr_band": "80–89",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://Webnode.com",
+    "domain": "webnode.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-27-prlog",
+    "name": "PRLog",
+    "dr": 83,
+    "dr_band": "80–89",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.prlog.org/pub/login.html",
+    "domain": "prlog.org",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-28-ezlocal",
+    "name": "EZlocal",
+    "dr": 81,
+    "dr_band": "80–89",
+    "categories": [
+      "General",
+      "New",
+      "Phone Number Verficiation"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://ezlocal.com/free-business-listing/?refs=ezhome",
+    "domain": "ezlocal.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-29-openpr",
+    "name": "OpenPR",
+    "dr": 81,
+    "dr_band": "80–89",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.openpr.com/news/submit.html",
+    "domain": "openpr.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-30-alternativeto",
+    "name": "AlternativeTo",
+    "dr": 80,
+    "dr_band": "80–89",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://alternativeto.net/manage-item/",
+    "domain": "alternativeto.net",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-31-sortlist",
+    "name": "Sortlist",
+    "dr": 80,
+    "dr_band": "80–89",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.sortlist.com/claim/agency",
+    "domain": "sortlist.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-32-stackshare",
+    "name": "Stackshare",
+    "dr": 80,
+    "dr_band": "80–89",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://stackshare.io/submit/",
+    "domain": "stackshare.io",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-33-brownbook",
+    "name": "Brownbook",
+    "dr": 79,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.brownbook.net/register/",
+    "domain": "brownbook.net",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-34-active-search-results",
+    "name": "Active Search Results",
+    "dr": 78,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.activesearchresults.com/addwebsite.php",
+    "domain": "activesearchresults.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-35-bizcommunity",
+    "name": "Bizcommunity",
+    "dr": 78,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.bizcommunity.com/Signin.aspx?fa=15&l=196&c=1&menu=134&ru=https%3a%2f%2fwww.bizcommunity.com%2fMyAccount%2fCompanies.aspx",
+    "domain": "bizcommunity.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-36-europages",
+    "name": "europages",
+    "dr": 77,
+    "dr_band": "70–79",
+    "categories": [
+      "European Only",
+      "General",
+      "Need phone no",
+      "New"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.europages.co.uk/en/supplier-registration?flow=1d506b76-d085-46b0-9b63-25664dd901ea",
+    "domain": "europages.co.uk",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-37-callupcontact",
+    "name": "Callupcontact",
+    "dr": 76,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.callupcontact.com/active/register/register.php?",
+    "domain": "callupcontact.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-38-eu-startups",
+    "name": "EU Startups",
+    "dr": 76,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.eu-startups.com/directory/?wpbdp_view=submit_listing",
+    "domain": "eu-startups.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-39-enrollbusiness",
+    "name": "EnrollBusiness",
+    "dr": 76,
+    "dr_band": "70–79",
+    "categories": [
+      "Biz info",
+      "General",
+      "New",
+      "US only"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://us.enrollbusiness.com/CreateBusinessProfile",
+    "domain": "us.enrollbusiness.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-40-askmap",
+    "name": "AskMap",
+    "dr": 74,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "http://www.askmap.net/login.asp?nexturl=%2Fadd%2Easp",
+    "domain": "askmap.net",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-41-cybo",
+    "name": "Cybo",
+    "dr": 74,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.cybo.com/add-business/",
+    "domain": "cybo.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-42-exact-seek",
+    "name": "Exact Seek",
+    "dr": 74,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.exactseek.com/add.html",
+    "domain": "exactseek.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-43-allmyfaves",
+    "name": "Allmyfaves",
+    "dr": 73,
+    "dr_band": "70–79",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://allmyfaves.com/",
+    "domain": "allmyfaves.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-44-alternative",
+    "name": "Alternative",
+    "dr": 73,
+    "dr_band": "70–79",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://alternative.me/",
+    "domain": "alternative.me",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-45-apsense",
+    "name": "Apsense",
+    "dr": 73,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.apsense.com/",
+    "domain": "apsense.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-46-comparecamp",
+    "name": "CompareCamp",
+    "dr": 73,
+    "dr_band": "70–79",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://comparecamp.com/request-a-review/",
+    "domain": "comparecamp.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-47-ec21",
+    "name": "EC21",
+    "dr": 73,
+    "dr_band": "70–79",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://login.ec21.com/global/login/Login.jsp?nextUrl=%2Fglobal%2Fbasic%2FMyProductEdit.jsp%3FactionName%3Dinsert%26noGroupFlag%3D1",
+    "domain": "login.ec21.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-48-infobel",
+    "name": "Infobel",
+    "dr": 73,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.infobel.com/en/norway/Packages/ChoosePackageStep?businessID=&businessType=Business&selectedPackage=Basic&currentPackage=Regular",
+    "domain": "infobel.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-49-owler",
+    "name": "Owler",
+    "dr": 73,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.owler.com/login",
+    "domain": "owler.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-50-saasworthy",
+    "name": "SaaSworthy",
+    "dr": 73,
+    "dr_band": "70–79",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.saasworthy.com/offerings",
+    "domain": "saasworthy.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-51-select-hub",
+    "name": "Select Hub",
+    "dr": 73,
+    "dr_band": "70–79",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://pmo.selecthub.com/claim-your-product/?user_journey=%5B%7B%22page_title%22:%22Software%20Selection%20Tool%20%7C%20Software%20Selection%20Management%20%7C%20SelectHub%22,%22timestamps%22:%5B1728403868861,1728403885178%5D%7D,%7B%22page_title%22:%22Seller%20%7C%20SelectHub%22,%22timestamps%22:%5B1728403884019%5D%7D%5D",
+    "domain": "pmo.selecthub.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-52-getlatka",
+    "name": "Getlatka",
+    "dr": 72,
+    "dr_band": "70–79",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://getlatka.com/saas-companies",
+    "domain": "getlatka.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-53-linkcentre",
+    "name": "Linkcentre",
+    "dr": 72,
+    "dr_band": "70–79",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "http://linkcentre.com/",
+    "domain": "linkcentre.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-54-saas-hub",
+    "name": "Saas Hub",
+    "dr": 72,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "SaaS",
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.saashub.com/",
+    "domain": "saashub.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-55-techbehemoths",
+    "name": "Techbehemoths",
+    "dr": 72,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://techbehemoths.com/companies/get-listed",
+    "domain": "techbehemoths.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-56-viesearch",
+    "name": "Viesearch",
+    "dr": 72,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://viesearch.com/submit",
+    "domain": "viesearch.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-57-featured-customers",
+    "name": "Featured Customers",
+    "dr": 71,
+    "dr_band": "70–79",
+    "categories": [
+      "B2B",
+      "SaaS",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.featuredcustomers.com/",
+    "domain": "featuredcustomers.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-58-hotvsnot",
+    "name": "HotVsNot",
+    "dr": 71,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "http://hotvsnot.com/Add-Site/Add-Site.aspx",
+    "domain": "hotvsnot.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-59-land-book",
+    "name": "Land-book",
+    "dr": 71,
+    "dr_band": "70–79",
+    "categories": [
+      "Beautiful Website",
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://land-book.com/websites/new",
+    "domain": "land-book.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-60-sidebar",
+    "name": "Sidebar",
+    "dr": 71,
+    "dr_band": "70–79",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://sidebar.io/submit",
+    "domain": "sidebar.io",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-61-bizidex",
+    "name": "Bizidex",
+    "dr": 70,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "Need phone no",
+      "New"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://bizidex.com/register",
+    "domain": "bizidex.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-62-entireweb",
+    "name": "Entireweb",
+    "dr": 70,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.entireweb.com/free_submission/webpage/",
+    "domain": "entireweb.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-63-sitelike",
+    "name": "Sitelike",
+    "dr": 70,
+    "dr_band": "70–79",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.sitelike.org/add-site/",
+    "domain": "sitelike.org",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-64-tuugo",
+    "name": "Tuugo",
+    "dr": 70,
+    "dr_band": "70–79",
+    "categories": [
+      "Biz info",
+      "General",
+      "New"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.tuugo.us/pricing-plan/",
+    "domain": "tuugo.us",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-65-side-projectors",
+    "name": "Side Projectors",
+    "dr": 69,
+    "dr_band": "60–69",
+    "categories": [
+      "SaaS",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.sideprojectors.com/",
+    "domain": "sideprojectors.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-66-cataloxy",
+    "name": "Cataloxy",
+    "dr": 68,
+    "dr_band": "60–69",
+    "categories": [
+      "Biz info",
+      "General",
+      "New"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.cataloxy.us/firms_add.htm",
+    "domain": "cataloxy.us",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-67-saashub",
+    "name": "SaasHub",
+    "dr": 68,
+    "dr_band": "60–69",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.saashub.com/submit",
+    "domain": "saashub.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-68-sonic-run",
+    "name": "Sonic Run",
+    "dr": 68,
+    "dr_band": "60–69",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.sonicrun.com/freelisting.html",
+    "domain": "sonicrun.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-69-peerspot",
+    "name": "PeerSpot",
+    "dr": 67,
+    "dr_band": "60–69",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.peerspot.com/contact",
+    "domain": "peerspot.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-70-startup-ranking",
+    "name": "Startup Ranking",
+    "dr": 67,
+    "dr_band": "60–69",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.startupranking.com/startup/create/url-validation",
+    "domain": "startupranking.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-71-startup-stash",
+    "name": "Startup Stash",
+    "dr": 67,
+    "dr_band": "60–69",
+    "categories": [
+      "SaaS",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://startupstash.com/add-listing/",
+    "domain": "startupstash.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-72-tool-pilot",
+    "name": "Tool Pilot",
+    "dr": 67,
+    "dr_band": "60–69",
+    "categories": [
+      "AI",
+      "badge"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.toolpilot.ai/pages/submit-your-ai-tool",
+    "domain": "toolpilot.ai",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-73-1888pressrelease",
+    "name": "1888PressRelease",
+    "dr": 65,
+    "dr_band": "60–69",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.1888pressrelease.com/register_new.php",
+    "domain": "1888pressrelease.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-74-pitchwall",
+    "name": "Pitchwall",
+    "dr": 65,
+    "dr_band": "60–69",
+    "categories": [
+      "AI",
+      "SaaS",
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://pitchwall.co/product/submit",
+    "domain": "pitchwall.co",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-75-sprout24",
+    "name": "Sprout24",
+    "dr": 65,
+    "dr_band": "60–69",
+    "categories": [
+      "SaaS",
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://sprout24.com/submit/",
+    "domain": "sprout24.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-76-somuch",
+    "name": "SoMuch",
+    "dr": 64,
+    "dr_band": "60–69",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://somuch.com/submit-links/",
+    "domain": "somuch.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-77-submission-web-directory",
+    "name": "Submission Web Directory",
+    "dr": 64,
+    "dr_band": "60–69",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.submissionwebdirectory.com/submit.php",
+    "domain": "submissionwebdirectory.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-78-future-tools",
+    "name": "Future Tools",
+    "dr": 63,
+    "dr_band": "60–69",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.futuretools.io/submit-a-tool",
+    "domain": "futuretools.io",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-79-dokey-ai",
+    "name": "Dokey AI",
+    "dr": 62,
+    "dr_band": "60–69",
+    "categories": [
+      "AI",
+      "badge"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://dokeyai.com/submit",
+    "domain": "dokeyai.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-80-express-business-directory",
+    "name": "Express Business Directory",
+    "dr": 62,
+    "dr_band": "60–69",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.expressbusinessdirectory.com/sign-in/",
+    "domain": "expressbusinessdirectory.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-81-fyple",
+    "name": "Fyple",
+    "dr": 62,
+    "dr_band": "60–69",
+    "categories": [
+      "Biz info",
+      "General",
+      "New",
+      "US only"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.fyple.com/",
+    "domain": "fyple.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-82-marketing-internet-directory",
+    "name": "Marketing Internet Directory",
+    "dr": 61,
+    "dr_band": "60–69",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.marketinginternetdirectory.com/submit.php",
+    "domain": "marketinginternetdirectory.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-83-appagg",
+    "name": "AppAgg",
+    "dr": 58,
+    "dr_band": "50–59",
+    "categories": [
+      "Apps"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://appagg.com/add/",
+    "domain": "appagg.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-84-uneed",
+    "name": "Uneed",
+    "dr": 58,
+    "dr_band": "50–59",
+    "categories": [
+      "AI",
+      "General",
+      "Launch Platform",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.uneed.best/submit-a-tool",
+    "domain": "uneed.best",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-85-bizbangboom",
+    "name": "BizBangBoom",
+    "dr": 57,
+    "dr_band": "50–59",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.bizbangboom.com/join",
+    "domain": "bizbangboom.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-86-devhunt",
+    "name": "Devhunt",
+    "dr": 57,
+    "dr_band": "50–59",
+    "categories": [
+      "AI",
+      "Launch Platform",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://devhunt.org/account/tools/new",
+    "domain": "devhunt.org",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-87-saas-ai-tools",
+    "name": "SaaS AI Tools",
+    "dr": 56,
+    "dr_band": "50–59",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://saasaitools.com/submit/",
+    "domain": "saasaitools.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-88-super-tools",
+    "name": "Super Tools",
+    "dr": 56,
+    "dr_band": "50–59",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://supertools.therundown.ai/submit",
+    "domain": "supertools.therundown.ai",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-89-directory-web-promotion",
+    "name": "Directory Web Promotion",
+    "dr": 55,
+    "dr_band": "50–59",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://promotebusinessdirectory.com/submit.php",
+    "domain": "promotebusinessdirectory.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-90-freeonline",
+    "name": "FreeOnline",
+    "dr": 55,
+    "dr_band": "50–59",
+    "categories": [
+      "Apps",
+      "Software",
+      "site"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.freeonline.org/segnala-un-sito/",
+    "domain": "freeonline.org",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-91-landing-my-cloud-media",
+    "name": "Landing My Cloud Media",
+    "dr": 55,
+    "dr_band": "50–59",
+    "categories": [
+      "AI",
+      "SaaS",
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://landing.mycloudmedia.co.uk/apps-and-websites-submit-ai-or-saas-tool/new-submission.html",
+    "domain": "landing.mycloudmedia.co.uk",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-92-spotsaas",
+    "name": "SpotSaaS",
+    "dr": 54,
+    "dr_band": "50–59",
+    "categories": [
+      "SaaS",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.spotsaas.com/get-listed",
+    "domain": "spotsaas.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-93-fivetaco",
+    "name": "FiveTaco",
+    "dr": 53,
+    "dr_band": "50–59",
+    "categories": [
+      "SaaS",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://fivetaco.com/submit",
+    "domain": "fivetaco.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-94-free-pr-web-directory",
+    "name": "Free PR Web Directory",
+    "dr": 53,
+    "dr_band": "50–59",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.freeprwebdirectory.com/submit.php",
+    "domain": "freeprwebdirectory.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-95-idea-kiln",
+    "name": "Idea Kiln",
+    "dr": 53,
+    "dr_band": "50–59",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://ideakiln.com/",
+    "domain": "ideakiln.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-96-weboworld",
+    "name": "Weboworld",
+    "dr": 53,
+    "dr_band": "50–59",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://weboworld.com/user/create-listing/1",
+    "domain": "weboworld.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-97-news-by-wire",
+    "name": "News By Wire",
+    "dr": 52,
+    "dr_band": "50–59",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://newsbywire.com/add-press-release/",
+    "domain": "newsbywire.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-98-tradeford",
+    "name": "TradeFord",
+    "dr": 52,
+    "dr_band": "50–59",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://supplier.tradeford.com/",
+    "domain": "supplier.tradeford.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-99-us-info",
+    "name": "US-Info",
+    "dr": 50,
+    "dr_band": "50–59",
+    "categories": [
+      "General",
+      "New",
+      "US only"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.us-info.com/en/usa/Packages/ChoosePackageStep?businessID=&businessType=Business&selectedPackage=Basic&currentPackage=Regular",
+    "domain": "us-info.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-100-zipleaf",
+    "name": "Zipleaf",
+    "dr": 50,
+    "dr_band": "50–59",
+    "categories": [
+      "Biz info",
+      "General",
+      "New"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.zipleaf.com/",
+    "domain": "zipleaf.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-101-product-burst",
+    "name": "Product Burst",
+    "dr": 48,
+    "dr_band": "40–49",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://productburst.com/",
+    "domain": "productburst.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-102-ring-my-biz",
+    "name": "Ring My Biz",
+    "dr": 48,
+    "dr_band": "40–49",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.ringmybiz.com/post-business",
+    "domain": "ringmybiz.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-103-bizpages",
+    "name": "Bizpages",
+    "dr": 47,
+    "dr_band": "40–49",
+    "categories": [
+      "General",
+      "New",
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://bizpages.org/en/list-business",
+    "domain": "bizpages.org",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-104-launching-next",
+    "name": "Launching Next",
+    "dr": 47,
+    "dr_band": "40–49",
+    "categories": [
+      "SaaS",
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.launchingnext.com/submit/",
+    "domain": "launchingnext.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-105-techpluto",
+    "name": "TechPluto",
+    "dr": 47,
+    "dr_band": "40–49",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.techpluto.com/submit-startup/",
+    "domain": "techpluto.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-106-curated",
+    "name": "Curated",
+    "dr": 46,
+    "dr_band": "40–49",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.curated.design/",
+    "domain": "curated.design",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-107-insidr-ai",
+    "name": "Insidr AI",
+    "dr": 46,
+    "dr_band": "40–49",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.insidr.ai/submit-tools/",
+    "domain": "insidr.ai",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-108-prolinkdirectory",
+    "name": "ProLinkDirectory",
+    "dr": 46,
+    "dr_band": "40–49",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.prolinkdirectory.com/submit.php",
+    "domain": "prolinkdirectory.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-109-10015",
+    "name": "10015",
+    "dr": 45,
+    "dr_band": "40–49",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://10015.io/product-finder/submit",
+    "domain": "10015.io",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-110-ben-s-bites",
+    "name": "Ben's Bites",
+    "dr": 45,
+    "dr_band": "40–49",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://news.bensbites.com/submit",
+    "domain": "news.bensbites.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-111-tiny-startups",
+    "name": "Tiny Startups",
+    "dr": 45,
+    "dr_band": "40–49",
+    "categories": [
+      "AI",
+      "Launch Platform",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://tally.so/r/wMzP8X",
+    "domain": "tally.so",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-112-b2bmap",
+    "name": "B2BMAP",
+    "dr": 43,
+    "dr_band": "40–49",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://b2bmap.com/business-listing",
+    "domain": "b2bmap.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-113-marsx",
+    "name": "Marsx",
+    "dr": 43,
+    "dr_band": "40–49",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://marsx.dev/ai-startups/",
+    "domain": "marsx.dev",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-114-blogs-findermaster-com",
+    "name": "blogs.findermaster.com",
+    "dr": 41,
+    "dr_band": "40–49",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://blogs.findermaster.com",
+    "domain": "blogs.findermaster.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-115-finder-master-blogs",
+    "name": "Finder Master Blogs",
+    "dr": 40,
+    "dr_band": "40–49",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://articlesexplore.findermaster.com/post-an-article-steps.php",
+    "domain": "articlesexplore.findermaster.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-116-ai-library",
+    "name": "AI Library",
+    "dr": 39,
+    "dr_band": "30–39",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://library.phygital.plus/tool-submission",
+    "domain": "library.phygital.plus",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-117-alpha-digits",
+    "name": "Alpha Digits",
+    "dr": 39,
+    "dr_band": "30–39",
+    "categories": [
+      "Apps"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://alphadigits.com/submit-app-for-review/",
+    "domain": "alphadigits.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-118-startup-buffer",
+    "name": "Startup Buffer",
+    "dr": 39,
+    "dr_band": "30–39",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://startupbuffer.com/site/submit",
+    "domain": "startupbuffer.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-119-yaatd",
+    "name": "Yaatd",
+    "dr": 39,
+    "dr_band": "30–39",
+    "categories": [
+      "AI",
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://yaatd.com/submit/",
+    "domain": "yaatd.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-120-advertise-era-articles",
+    "name": "Advertise Era Articles",
+    "dr": 38,
+    "dr_band": "30–39",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://articlevisit.advertiseera.com/post-an-article.php",
+    "domain": "articlevisit.advertiseera.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-121-discover-cloud",
+    "name": "Discover Cloud",
+    "dr": 38,
+    "dr_band": "30–39",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.discovercloud.com/campaign",
+    "domain": "discovercloud.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-122-yookalo-articles",
+    "name": "Yookalo Articles",
+    "dr": 38,
+    "dr_band": "30–39",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://blogpeople.yookalo.com/post-an-article-steps.php",
+    "domain": "blogpeople.yookalo.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-123-story-wallclassifieds-com",
+    "name": "story.wallclassifieds.com",
+    "dr": 38,
+    "dr_band": "30–39",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://story.wallclassifieds.com",
+    "domain": "story.wallclassifieds.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-124-cipinet",
+    "name": "Cipinet",
+    "dr": 37,
+    "dr_band": "30–39",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.cipinet.com/suggest.php?action=addlink",
+    "domain": "cipinet.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-125-project-hunt",
+    "name": "Project Hunt",
+    "dr": 37,
+    "dr_band": "30–39",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://projecthunt.me/",
+    "domain": "projecthunt.me",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-126-ctrl-alt",
+    "name": "ctrl alt",
+    "dr": 37,
+    "dr_band": "30–39",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://ctrlalt.cc/",
+    "domain": "ctrlalt.cc",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-127-9sites",
+    "name": "9sites",
+    "dr": 36,
+    "dr_band": "30–39",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://9sites.net/addurl.php",
+    "domain": "9sites.net",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-128-h1ad",
+    "name": "H1ad",
+    "dr": 36,
+    "dr_band": "30–39",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://articlesprocess.h1ad.com/submit-an-article-process.php",
+    "domain": "articlesprocess.h1ad.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-129-ai-findy",
+    "name": "AI Findy",
+    "dr": 35,
+    "dr_band": "30–39",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://aifindy.com/contacto/publica-tu-ia-en-aifindy/",
+    "domain": "aifindy.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-130-open-future",
+    "name": "Open Future",
+    "dr": 35,
+    "dr_band": "30–39",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://openfuture.ai/submit-tool",
+    "domain": "openfuture.ai",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-131-paggu",
+    "name": "Paggu",
+    "dr": 35,
+    "dr_band": "30–39",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.paggu.com/submit-your-startup/",
+    "domain": "paggu.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-132-robin-good",
+    "name": "Robin Good",
+    "dr": 35,
+    "dr_band": "30–39",
+    "categories": [
+      "Blog",
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://tools.robingood.com/#",
+    "domain": "tools.robingood.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-133-10words",
+    "name": "10words",
+    "dr": 34,
+    "dr_band": "30–39",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://portal.10words.io/submissions/submit",
+    "domain": "portal.10words.io",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-134-gainweb",
+    "name": "GainWeb",
+    "dr": 34,
+    "dr_band": "30–39",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://gainweb.org/submit.php?LINK_TYPE=2",
+    "domain": "gainweb.org",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-135-startupanz",
+    "name": "Startupanz",
+    "dr": 34,
+    "dr_band": "30–39",
+    "categories": [
+      "Software",
+      "Startup"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://startupanz.com/submit-my-startup-profile/",
+    "domain": "startupanz.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-136-promote-project",
+    "name": "Promote Project",
+    "dr": 33,
+    "dr_band": "30–39",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://www.promoteproject.com/submit-startup",
+    "domain": "promoteproject.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-137-viralmarketinglab",
+    "name": "ViralmarketingLab",
+    "dr": 33,
+    "dr_band": "30–39",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.viralmarketinglab.com/",
+    "domain": "viralmarketinglab.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-138-spiff-store",
+    "name": "Spiff.store",
+    "dr": 32,
+    "dr_band": "30–39",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://spiff.store/submit-tool/",
+    "domain": "spiff.store",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-139-startup-inspire",
+    "name": "Startup Inspire",
+    "dr": 32,
+    "dr_band": "30–39",
+    "categories": [
+      "New",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.startupinspire.com/dashboard/startup/create?tab=Informations",
+    "domain": "startupinspire.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-140-aigclist",
+    "name": "AIGCLIST",
+    "dr": 31,
+    "dr_band": "30–39",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://docs.google.com/forms/d/e/1FAIpQLSdg8qIBAmcvsiOz0j0j-JAdoo_ctKL27jGrttykmAclrTbbYA/viewform",
+    "domain": "docs.google.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-141-saas-po",
+    "name": "Saas Po",
+    "dr": 31,
+    "dr_band": "30–39",
+    "categories": [
+      "SaaS",
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.saaspo.com/submit",
+    "domain": "saaspo.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-142-ai-tool-guru",
+    "name": "AI Tool Guru",
+    "dr": 30,
+    "dr_band": "30–39",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://aitoolguru.com/submit-ai-tool",
+    "domain": "aitoolguru.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-143-what-the-ai",
+    "name": "What the AI",
+    "dr": 30,
+    "dr_band": "30–39",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://whattheai.tech/submit",
+    "domain": "whattheai.tech",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-144-onemilliondirectory",
+    "name": "onemilliondirectory",
+    "dr": 30,
+    "dr_band": "30–39",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.onemilliondirectory.com/submit",
+    "domain": "onemilliondirectory.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-145-ai-lib",
+    "name": "AI Lib",
+    "dr": 29,
+    "dr_band": "20–29",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://ailib.ru/en/add-ai/free/",
+    "domain": "ailib.ru",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-146-anyfp",
+    "name": "Anyfp",
+    "dr": 29,
+    "dr_band": "20–29",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://anyfp.com/contact/",
+    "domain": "anyfp.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-147-cuspera",
+    "name": "Cuspera",
+    "dr": 29,
+    "dr_band": "20–29",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://docs.google.com/forms/d/e/1FAIpQLSfWRgf6b8sNZnZj-0Je60H-5J5pHmYkM8uDgiFQi5Wfuzx7Xg/viewform?vc=0&c=0&w=1",
+    "domain": "docs.google.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-148-devpages",
+    "name": "DevPages",
+    "dr": 29,
+    "dr_band": "20–29",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.devpages.io/submit-a-tool",
+    "domain": "devpages.io",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-149-startup-dope",
+    "name": "Startup Dope",
+    "dr": 29,
+    "dr_band": "20–29",
+    "categories": [
+      "Software",
+      "Startup"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://onboarding.startupdope.com/product-submission-form/",
+    "domain": "onboarding.startupdope.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-150-esidehustles",
+    "name": "eSideHustles",
+    "dr": 29,
+    "dr_band": "20–29",
+    "categories": [
+      "General",
+      "New",
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://esidehustles.com/submit-a-resource/",
+    "domain": "esidehustles.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-151-indiehackerstacks",
+    "name": "IndieHackerStacks",
+    "dr": 28,
+    "dr_band": "20–29",
+    "categories": [
+      "General",
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://indiehackerstacks.com/me/products/-1",
+    "domain": "indiehackerstacks.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-152-toolfolio",
+    "name": "Toolfolio",
+    "dr": 28,
+    "dr_band": "20–29",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://toolfolio.io/submit-suggestion",
+    "domain": "toolfolio.io",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-153-euroalternative",
+    "name": "EuroAlternative",
+    "dr": 27,
+    "dr_band": "20–29",
+    "categories": [
+      "European Only",
+      "New"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://euroalternative.co",
+    "domain": "euroalternative.co",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-154-roozna",
+    "name": "Roozna",
+    "dr": 26,
+    "dr_band": "20–29",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://roozna.com/en/post-a-new-business",
+    "domain": "roozna.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-155-startup-roulette",
+    "name": "Startup Roulette",
+    "dr": 26,
+    "dr_band": "20–29",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://startuproulette.com/promote-my-startup",
+    "domain": "startuproulette.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-156-tipseason",
+    "name": "TipSeason",
+    "dr": 26,
+    "dr_band": "20–29",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://tipseason.com/ai-tools/submit-free",
+    "domain": "tipseason.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-157-fiddy",
+    "name": "Fiddy",
+    "dr": 25,
+    "dr_band": "20–29",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://httboqu3t5a.typeform.com/to/nmt9wTHk?typeform-source=fiddy.co",
+    "domain": "httboqu3t5a.typeform.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-158-link-directory-listings",
+    "name": "Link Directory Listings",
+    "dr": 25,
+    "dr_band": "20–29",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://linkdirectorylistings.org/submit-site/",
+    "domain": "linkdirectorylistings.org",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-159-promptzone",
+    "name": "Promptzone",
+    "dr": 25,
+    "dr_band": "20–29",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.promptzone.com/",
+    "domain": "promptzone.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-160-promptzone",
+    "name": "Promptzone",
+    "dr": 25,
+    "dr_band": "20–29",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.promptzone.com/new",
+    "domain": "promptzone.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-161-startup-stage",
+    "name": "Startup Stage",
+    "dr": 25,
+    "dr_band": "20–29",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://startupstage.app/startups/new",
+    "domain": "startupstage.app",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-162-bestwebsite",
+    "name": "Bestwebsite",
+    "dr": 24,
+    "dr_band": "20–29",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://bestwebsites.info/en/submit",
+    "domain": "bestwebsites.info",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-163-startup88",
+    "name": "Startup88",
+    "dr": 24,
+    "dr_band": "20–29",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://startup88.typeform.com/to/CRjWqM?typeform-source=startup88.com",
+    "domain": "startup88.typeform.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-164-startups-fyi",
+    "name": "Startups.fyi",
+    "dr": 24,
+    "dr_band": "20–29",
+    "categories": [
+      "Need to mention revenue"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://tally.so/r/3lOGLk",
+    "domain": "tally.so",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-165-desifounder",
+    "name": "Desifounder",
+    "dr": 23,
+    "dr_band": "20–29",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://desifounder.com/Spotlight/Submit",
+    "domain": "desifounder.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-166-thetoolbus",
+    "name": "TheToolBus",
+    "dr": 23,
+    "dr_band": "20–29",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://www.thetoolbus.ai",
+    "domain": "thetoolbus.ai",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-167-ai-gems",
+    "name": "AI Gems",
+    "dr": 22,
+    "dr_band": "20–29",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://aigems.net/submit",
+    "domain": "aigems.net",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-168-piseries",
+    "name": "Piseries",
+    "dr": 22,
+    "dr_band": "20–29",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.piseries.com/",
+    "domain": "piseries.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-169-startup-collections",
+    "name": "Startup Collections",
+    "dr": 22,
+    "dr_band": "20–29",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://startupcollections.com/submit-product",
+    "domain": "startupcollections.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-170-startup-europe",
+    "name": "Startup Europe",
+    "dr": 22,
+    "dr_band": "20–29",
+    "categories": [
+      "European Only"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://startupeurope.net/",
+    "domain": "startupeurope.net",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-171-internet-is-beautiful",
+    "name": "Internet Is Beautiful",
+    "dr": 21,
+    "dr_band": "20–29",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://tally.so/r/nGrXLj",
+    "domain": "tally.so",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-172-owwly",
+    "name": "Owwly",
+    "dr": 21,
+    "dr_band": "20–29",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://owwly.com/account/product",
+    "domain": "owwly.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-173-startup-collections",
+    "name": "Startup Collections",
+    "dr": 21,
+    "dr_band": "20–29",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "nofollow",
+    "submission_url": "https://startupcollections.com/submit-product/",
+    "domain": "startupcollections.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-174-lachief",
+    "name": "Lachief",
+    "dr": 19,
+    "dr_band": "10–19",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.lachief.io/",
+    "domain": "lachief.io",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-175-1-webs-directory",
+    "name": "1 webs directory",
+    "dr": 18,
+    "dr_band": "10–19",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.1websdirectory.com/",
+    "domain": "1websdirectory.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-176-site-plus",
+    "name": "Site-Plus",
+    "dr": 18,
+    "dr_band": "10–19",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.sites-plus.com/submit?c=96&LINK_TYPE=9",
+    "domain": "sites-plus.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-177-the-elf-directory",
+    "name": "The Elf Directory",
+    "dr": 18,
+    "dr_band": "10–19",
+    "categories": [
+      "Dofollow",
+      "New"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://elf08.com/submit",
+    "domain": "elf08.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-178-websurl",
+    "name": "WebsURL",
+    "dr": 15,
+    "dr_band": "10–19",
+    "categories": [
+      "General",
+      "New"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.websurl.com/submit",
+    "domain": "websurl.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-179-the-ai-navigator",
+    "name": "The AI Navigator",
+    "dr": 13,
+    "dr_band": "10–19",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.theainavigator.com/submit-an-ai-tool",
+    "domain": "theainavigator.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-180-brouseai",
+    "name": "BroUseAI",
+    "dr": 12,
+    "dr_band": "10–19",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.brouseai.com/submission/ai",
+    "domain": "brouseai.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-181-taalk",
+    "name": "Taalk",
+    "dr": 12,
+    "dr_band": "10–19",
+    "categories": [
+      "General"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://taalk.com/submit-startup/",
+    "domain": "taalk.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-182-the-ai-warehouse",
+    "name": "The AI Warehouse",
+    "dr": 12,
+    "dr_band": "10–19",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://inside.thewarehouse.ai/submissions",
+    "domain": "inside.thewarehouse.ai",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-183-ai-tools-guide",
+    "name": "AI Tools Guide",
+    "dr": 11,
+    "dr_band": "10–19",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://aitoolsguide.com/contact/",
+    "domain": "aitoolsguide.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-184-startup-sea",
+    "name": "Startup Sea",
+    "dr": 11,
+    "dr_band": "10–19",
+    "categories": [
+      "Startup"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "http://www.startupsea.com/p/submit-startup.html",
+    "domain": "startupsea.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-185-ai-marketing-directory",
+    "name": "AI Marketing Directory",
+    "dr": 10,
+    "dr_band": "10–19",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.aimarketing.directory/submit",
+    "domain": "aimarketing.directory",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-186-feedmystartup",
+    "name": "FeedMyStartup",
+    "dr": 10,
+    "dr_band": "10–19",
+    "categories": [
+      "Startup"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://feedmystartup.com/submit-your-startup/",
+    "domain": "feedmystartup.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-187-feedmystartup---app",
+    "name": "FeedMyStartup - APP",
+    "dr": 10,
+    "dr_band": "10–19",
+    "categories": [
+      "Apps"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://feedmystartup.com/submit-your-app/",
+    "domain": "feedmystartup.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-188-gpt-forge",
+    "name": "GPT Forge",
+    "dr": 10,
+    "dr_band": "10–19",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "unverified",
+    "submission_url": "https://docs.google.com/forms/d/e/1FAIpQLSdttwE4QP8PqoDzh36Q5NUok3BdUe33thDCQ5dT_RNY2goWvQ/viewform",
+    "domain": "docs.google.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-189-next-gen-tools",
+    "name": "Next Gen Tools",
+    "dr": 9,
+    "dr_band": "<10",
+    "categories": [
+      "Software"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://nextgentools.me/submit-your-tool",
+    "domain": "nextgentools.me",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-190-human-or-not",
+    "name": "Human or Not",
+    "dr": 8,
+    "dr_band": "<10",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.humanornot.co/submit-tool",
+    "domain": "humanornot.co",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-191-litedai",
+    "name": "LitedAI",
+    "dr": 8,
+    "dr_band": "<10",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.listedai.co/submit",
+    "domain": "listedai.co",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-192-profithunt",
+    "name": "ProfitHunt",
+    "dr": 8,
+    "dr_band": "<10",
+    "categories": [
+      "Need to mention revenue"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://docs.google.com/forms/d/e/1FAIpQLSdcuIN_dg9Xes5f9kCXb-C_Th3DYJGKWafaBgXgZY7tcJxXMw/viewform",
+    "domain": "docs.google.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-193-aigeneration",
+    "name": "AIGeneration",
+    "dr": 4.9,
+    "dr_band": "<10",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://www.theaigeneration.com/add/",
+    "domain": "theaigeneration.com",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  },
+  {
+    "id": "bl-194-ai-tools-up",
+    "name": "AI Tools Up",
+    "dr": 4.6,
+    "dr_band": "<10",
+    "categories": [
+      "AI"
+    ],
+    "source_follow_status": "dofollow",
+    "submission_url": "https://tally.so/r/nPpyBV",
+    "domain": "tally.so",
+    "source_list_reference": "Backlinks.md (2026 Edition)"
+  }
+]
