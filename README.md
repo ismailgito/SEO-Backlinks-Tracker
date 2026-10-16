@@ -111,6 +111,66 @@ The README animation is authored in [`docs/readme-preview.html`](docs/readme-pre
 - Browser `localStorage` for local-first project and submission state
 - Optional Supabase authentication/schema and SMTP or Resend email delivery
 
+## 🏠 Landing Page & Creator Profile
+
+The site opens on a landing page with two calls to action: **Sign up for free** (becomes **Open Dashboard** once signed in) and **Explore Backlinks**, which switches to the directories catalog and analytics. The logo and the browser Back button return to the landing page. Animations are CSS-only and switch off for visitors who prefer reduced motion.
+
+To fill in the "Built by" section, edit **`lib/creator.js`** (name, role, bio, links). For the profile picture, put a square image in `/public` (e.g. `public/creator.jpg`) and set `avatar: '/creator.jpg'`.
+
+---
+
+## 🔑 Forgot Password
+
+Sign In → **Forgot password?** → enter email → `POST /api/auth/forgot` creates a Supabase recovery token (admin API) and emails the link through the app's own SMTP/Resend sender using `lib/email/password-reset.html` → the link opens `/auth/confirm` (verifies the token, sets the session) → `/reset-password` asks for **New password** and **Confirm new password**.
+
+Requirements: `SUPABASE_SERVICE_ROLE_KEY`, working `SMTP_*` (or Resend) settings, and `NEXT_PUBLIC_APP_URL` set to the site's real URL (the emailed link is built from it). Supabase's own SMTP/email templates are **not** used. Without Supabase configured the form shows a demo message and sends nothing.
+
+---
+
+## 📂 Project Directory Structure
+
+```
+├── app/
+│   ├── api/
+│   │   ├── auth/otp/route.js          # OTP request handler (sends code via SMTP/Resend)
+│   │   └── auth/verify/route.js       # OTP verify + Supabase session mint (admin API)
+│   ├── auth/callback/route.js         # OAuth / magic-link session callback
+│   ├── error.jsx                      # Route error boundary
+│   ├── global-error.jsx               # Root error boundary
+│   ├── globals.css                    # Swiss design tokens & CSS
+│   ├── layout.jsx                     # HTML head, Google Fonts & metadata
+│   └── page.jsx                       # Main application (Catalog, Dashboard)
+├── components/
+│   ├── AuthModal.jsx                  # Onboarding & Sign-in modal
+│   ├── CatalogGrid.jsx                # Project cards grid view
+│   ├── CatalogTable.jsx               # Editorial table view
+│   ├── DashboardView.jsx              # SVG Pie chart & analytics
+│   ├── EmptyCatalog.jsx               # Empty-state panel for filtered results
+│   ├── Filters.jsx                    # Multi-group filter panel
+│   ├── Footer.jsx                     # Editorial 3-column footer
+│   ├── Header.jsx                     # Top navigation & logo
+│   ├── landing/                       # Landing page (Landing, CreatorSection, WorkflowDemo, Reveal, CountUp)
+│   ├── Loading.jsx                    # Spinners & loading button
+│   ├── ProjectSelector.jsx            # Multi-site project switcher
+│   └── SubmissionModal.jsx            # Record live URLs & notes
+├── data/
+│   └── backlinks.json                 # 194 curated sources
+├── lib/
+│   ├── data/sources.js                # Sources helper & constants
+│   ├── otp-store.js                   # OTP storage (Supabase RPC / memory fallback)
+│   ├── resend.js                      # SMTP (nodemailer) & Resend email clients
+│   ├── storage.js                     # State persistence & 5-backlink rule
+│   └── supabase/                      # Browser, SSR, and service-role Supabase clients
+├── middleware.js                      # Supabase auth token refresh
+├── scripts/
+│   └── generate-seed.js               # SQL seed generator (from data/backlinks.json)
+└── supabase/
+    ├── migrations/20261008000000_init.sql
+    ├── migrations/20261009000000_auth_otp_codes.sql
+    ├── migrations/20261010000000_drop_unused_submission_function.sql
+    └── seed.sql
+```
+
 ## Notes
 
 This project helps organize directory outreach; it does not submit listings automatically, validate the current quality of a domain, or guarantee rankings or link equity. Review each destination and its current requirements before submitting.

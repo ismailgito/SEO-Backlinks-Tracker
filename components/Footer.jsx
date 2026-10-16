@@ -3,7 +3,7 @@
 import React from 'react';
 import { ArrowRight, Globe, Shield, Terminal } from 'lucide-react';
 
-export default function Footer({ onScrollToTop }) {
+export default function Footer({ onScrollToTop, showBackToTop = true }) {
   return (
     <footer className="w-full bg-[#F7F7F7] dark:bg-[#0C0D0E] border-t border-[#E0E0E0] dark:border-[#26292E] mt-auto transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -57,18 +57,22 @@ export default function Footer({ onScrollToTop }) {
 
           {/* Right Column (4 cols): CTA Box */}
           <div className="md:col-span-4 flex flex-col justify-between">
-            <button
-              onClick={onScrollToTop}
-              className="group border border-[#111111] dark:border-[#26292E] bg-white dark:bg-[#141619] hover:bg-[#111111] dark:hover:bg-[#10B981] p-5 text-left transition-all"
-            >
-              <div className="text-xs font-black uppercase tracking-widest-editorial text-[#111111] dark:text-[#F3F4F6] group-hover:text-white dark:group-hover:text-[#0C0D0E] transition-colors mb-2">
-                START BUILDING DOMAIN AUTHORITY TODAY
-              </div>
-              <div className="flex items-center space-x-2 text-xs font-bold text-[#0B6B4F] dark:text-[#10B981] group-hover:text-white dark:group-hover:text-[#0C0D0E] transition-colors">
-                <span>BACK TO TOP</span>
-                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
-              </div>
-            </button>
+            {showBackToTop ? (
+              <button
+                onClick={onScrollToTop}
+                className="group border border-[#111111] dark:border-[#26292E] bg-white dark:bg-[#141619] hover:bg-[#111111] dark:hover:bg-[#10B981] p-5 text-left transition-all"
+              >
+                <div className="text-xs font-black uppercase tracking-widest-editorial text-[#111111] dark:text-[#F3F4F6] group-hover:text-white dark:group-hover:text-[#0C0D0E] transition-colors mb-2">
+                  START BUILDING DOMAIN AUTHORITY TODAY
+                </div>
+                <div className="flex items-center space-x-2 text-xs font-bold text-[#0B6B4F] dark:text-[#10B981] group-hover:text-white dark:group-hover:text-[#0C0D0E] transition-colors">
+                  <span>BACK TO TOP</span>
+                  <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
+                </div>
+              </button>
+            ) : (
+              <div />
+            )}
 
             <div className="text-[11px] text-[#888888] dark:text-[#6B7280] font-mono mt-4">
               Designed with Swiss Minimalist UI Spec

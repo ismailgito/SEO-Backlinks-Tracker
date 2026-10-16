@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
+import { getSafeNextPath } from '@/lib/safe-redirect';
 
 export async function GET(request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get('code');
-  const next = searchParams.get('next') || '/';
+  const next = getSafeNextPath(searchParams.get('next'), '/');
 
   let response = NextResponse.redirect(`${origin}${next}`);
 

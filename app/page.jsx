@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import Header from '@/components/Header';
-import Hero from '@/components/Hero';
+import Landing from '@/components/landing/Landing';
 import Filters from '@/components/Filters';
 import CatalogTable from '@/components/CatalogTable';
 import CatalogGrid from '@/components/CatalogGrid';
@@ -44,6 +44,7 @@ export default function HomePage() {
   const [theme, setTheme] = useState('light');
 
   // Navigation & Tabs
+  const [view, setView] = useState('landing'); // 'landing' | 'explore'
   const [activeTab, setActiveTab] = useState('catalog'); // 'catalog' | 'dashboard'
 
   // App State
@@ -101,6 +102,29 @@ export default function HomePage() {
 
     const evs = getEvents(activeId);
     setEventsState(evs);
+
+    // A reload while exploring should stay in the app; a fresh visit is the landing page
+    if (window.history.state?.view === 'explore') {
+      setView('explore');
+    }
+
+    // Deep link from an expired reset-password page: /?forgot=1
+    if (new URLSearchParams(window.location.search).get('forgot') === '1') {
+      setAuthLimitReason('');
+      setAuthModalMode('forgot');
+      setIsAuthModalOpen(true);
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+  }, []);
+
+  // Browser back/forward moves between the landing page and the explorer
+  useEffect(() => {
+    const onPopState = (event) => {
+      setView(event.state?.view === 'explore' ? 'explore' : 'landing');
+      window.scrollTo({ top: 0 });
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
   // Keep app state in sync with the Supabase OTP session (cookie-persisted)
@@ -169,17 +193,6 @@ export default function HomePage() {
   const securedCount = useMemo(() => {
     return Object.values(submissions).filter((s) => s.status === 'secured').length;
   }, [submissions]);
-
-  // Overall catalog stats
-  const totalSources = INITIAL_SOURCES.length;
-  const dofollowCount = useMemo(
-    () => INITIAL_SOURCES.filter((s) => s.source_follow_status === 'dofollow').length,
-    []
-  );
-  const dr90Count = useMemo(
-    () => INITIAL_SOURCES.filter((s) => s.dr >= 90).length,
-    []
-  );
 
   // Filtered Sources
   const filteredSources = useMemo(() => {
@@ -325,11 +338,33 @@ export default function HomePage() {
     }
   };
 
-  const scrollToCatalog = () => {
-    setActiveTab('catalog');
-    const el = document.getElementById('catalog-section');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  // Landing page → explorer (catalog + analytics). Pushes a history entry so the
+  // browser Back button returns to the landing page.
+  const enterApp = (tab = 'catalog') => {
+    setActiveTab(tab);
+    setView('explore');
+    window.history.pushState({ view: 'explore' }, '');
+    window.scrollTo({ top: 0 });
   };
+
+  const goHome = () => {
+    setView('landing');
+    if (window.history.state?.view === 'explore') {
+      window.history.back();
+    }
+    window.scrollTo({ top: 0 });
+  };
+
+  const openSignup = () => {
+    setAuthLimitReason('');
+    setAuthModalMode('signup');
+    setIsAuthModalOpen(true);
+  };
+
+  // The landing page's first CTA: sign up for guests, dashboard once signed in
+  const landingPrimaryCta = user
+    ? { label: 'Open Dashboard', onClick: () => enterApp('dashboard') }
+    : { label: 'Sign up for free', onClick: openSignup };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -355,17 +390,15 @@ export default function HomePage() {
         isCloudConnected={isSupabaseReady}
         theme={theme}
         onToggleTheme={handleToggleTheme}
+        variant={view === 'landing' ? 'landing' : 'app'}
+        onGoHome={goHome}
       />
 
-      {/* 2. Hero Section */}
-      <Hero
-        totalSources={totalSources}
-        dofollowCount={dofollowCount}
-        dr90Count={dr90Count}
-        securedCount={securedCount}
-        onScrollToCatalog={scrollToCatalog}
-      />
-
+      {/* 2. Landing page: shown first. "Explore Backlinks" switches to the explorer below. */}
+      {view === 'landing' ? (
+        <Landing primaryCta={landingPrimaryCta} onExplore={() => enterApp('catalog')} />
+      ) : (
+      <>
       {/* 3. Main Navigation Tabs */}
       <div className="bg-white dark:bg-[#141619] border-b border-[#E0E0E0] dark:border-[#26292E] sticky top-16 z-30 shadow-xs transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -558,6 +591,8 @@ export default function HomePage() {
           />
         )}
       </main>
+      </>
+      )}
 
       {/* 5. Modals */}
       <SubmissionModal
@@ -595,7 +630,7 @@ export default function HomePage() {
       />
 
       {/* 6. Footer */}
-      <Footer onScrollToTop={scrollToTop} />
+      <Footer onScrollToTop={scrollToTop} showBackToTop={view !== 'landing'} />
     </div>
   );
 }

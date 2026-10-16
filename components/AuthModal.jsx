@@ -19,7 +19,7 @@ export default function AuthModal({
   onSuccess,
   limitReachedReason,
 }) {
-  const [mode, setMode] = useState(initialMode); // 'signin', 'signup', 'otp_verify'
+  const [mode, setMode] = useState(initialMode); // 'signin', 'signup', 'otp_verify', 'forgot'
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -30,6 +30,7 @@ export default function AuthModal({
   const [successMsg, setSuccessMsg] = useState('');
   const [simulatedOtp, setSimulatedOtp] = useState('');
   const [resendCooldown, setResendCooldown] = useState(0);
+  const [resetEmailSent, setResetEmailSent] = useState(false);
 
   // Reset modal state whenever it opens
   useEffect(() => {
@@ -43,6 +44,7 @@ export default function AuthModal({
       setErrorMsg('');
       setSuccessMsg('');
       setResendCooldown(0);
+      setResetEmailSent(false);
     }
   }, [isOpen, initialMode]);
 
@@ -197,6 +199,49 @@ export default function AuthModal({
     }
   };
 
+  const openForgotPassword = () => {
+    setErrorMsg('');
+    setSuccessMsg('');
+    setResetEmailSent(false);
+    setPassword('');
+    setMode('forgot');
+  };
+
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    if (resendCooldown > 0 || loading) return;
+    if (!email || !email.includes('@')) {
+      setErrorMsg('Please enter a valid email address');
+      return;
+    }
+
+    setErrorMsg('');
+    setLoading(true);
+
+    try {
+      if (isLiveSupabase) {
+        // The server creates the recovery token and emails the link with the
+        // template in lib/email/password-reset.html; it lands on /auth/confirm.
+        const response = await fetch('/api/auth/forgot', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email.trim() }),
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(data.error || 'Could not send reset email');
+        }
+      }
+      // Same message whether or not the account exists, so emails can't be probed.
+      setResetEmailSent(true);
+      setResendCooldown(60);
+    } catch (err) {
+      setErrorMsg(toFriendlyError(err, 'Could not send reset email'));
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleResendOtp = async () => {
     if (resendCooldown > 0 || loading) return;
     await sendOtpCode({ isResend: true, type: 'signup' });
@@ -297,17 +342,21 @@ export default function AuthModal({
           <h2 className="text-2xl font-black text-[#111111] dark:text-[#F3F4F6] uppercase tracking-tight">
             {mode === 'otp_verify'
               ? 'ENTER VERIFICATION CODE'
+              : mode === 'forgot'
+              ? 'FORGOT PASSWORD'
               : mode === 'signup'
               ? 'CREATE ACCOUNT'
               : 'SIGN IN'}
           </h2>
           <p className="text-xs text-[#666666] dark:text-[#9CA3AF] mt-1">
-            Unlock unlimited secured backlinks, multi-project tracking, and cloud sync.
+            {mode === 'forgot'
+              ? "Enter your account email and we'll send you a link to create a new password."
+              : 'Unlock unlimited secured backlinks, multi-project tracking, and cloud sync.'}
           </p>
         </div>
 
         {/* Mode Tabs */}
-        {mode !== 'otp_verify' && (
+        {mode !== 'otp_verify' && mode !== 'forgot' && (
           <div className="flex border-b border-[#E0E0E0] dark:border-[#26292E] mb-6">
             <button
               onClick={() => setMode('signup')}
@@ -463,6 +512,15 @@ export default function AuthModal({
                   className="w-full bg-white dark:bg-[#1A1D21] border border-[#E0E0E0] dark:border-[#26292E] pl-10 pr-3.5 py-2.5 text-sm text-[#111111] dark:text-[#F3F4F6] placeholder-[#888888] dark:placeholder-[#6B7280] focus:outline-none focus:border-[#0B6B4F] dark:focus:border-[#10B981]"
                 />
               </div>
+              <div className="flex justify-end mt-1.5">
+                <button
+                  type="button"
+                  onClick={openForgotPassword}
+                  className="text-[11px] font-bold uppercase tracking-wider text-[#0B6B4F] dark:text-[#10B981] hover:underline"
+                >
+                  Forgot password?
+                </button>
+              </div>
             </div>
 
             <button
@@ -483,6 +541,97 @@ export default function AuthModal({
               )}
             </button>
           </form>
+        )}
+
+        {/* Forgot Password Flow */}
+        {mode === 'forgot' && (
+          <>
+            {resetEmailSent ? (
+              <div className="space-y-4">
+                <div className="p-4 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs space-y-2">
+                  <div className="flex items-center space-x-2 font-bold uppercase tracking-widest-editorial">
+                    <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+                    <span>Check your inbox</span>
+                  </div>
+                  <p className="leading-relaxed">
+                    {isLiveSupabase
+                      ? `If an account exists for ${email}, we've sent a link to create a new password. The link expires in 1 hour. Check your spam folder if you don't see it.`
+                      : 'Demo mode: no email is sent because Supabase is not configured.'}
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleForgotPassword}
+                  disabled={resendCooldown > 0 || loading}
+                  className="w-full flex items-center justify-center space-x-2 border border-[#E0E0E0] dark:border-[#26292E] bg-white dark:bg-[#1A1D21] hover:border-[#111111] dark:hover:border-[#10B981] text-[#111111] dark:text-[#F3F4F6] py-3 text-xs uppercase tracking-widest-editorial font-bold transition-colors disabled:opacity-60"
+                >
+                  <RefreshCw className="w-3.5 h-3.5" />
+                  <span>{resendCooldown > 0 ? `Resend in ${resendCooldown}s` : 'Resend Email'}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setErrorMsg('');
+                    setMode('signin');
+                  }}
+                  className="w-full text-xs uppercase tracking-wider font-bold text-[#888888] dark:text-[#9CA3AF] hover:text-[#111111] dark:hover:text-[#F3F4F6] py-2"
+                >
+                  Back to Sign In
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleForgotPassword} className="space-y-4">
+                <div>
+                  <label className="block text-xs font-bold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-widest-editorial mb-1">
+                    Email Address
+                  </label>
+                  <div className="relative">
+                    <Mail className="w-4 h-4 text-[#888888] dark:text-[#9CA3AF] absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="email"
+                      required
+                      autoFocus
+                      placeholder="founder@yourdomain.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full bg-white dark:bg-[#1A1D21] border border-[#E0E0E0] dark:border-[#26292E] pl-10 pr-3.5 py-2.5 text-sm text-[#111111] dark:text-[#F3F4F6] placeholder-[#888888] dark:placeholder-[#6B7280] focus:outline-none focus:border-[#0B6B4F] dark:focus:border-[#10B981]"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full flex items-center justify-center space-x-2 bg-[#111111] dark:bg-[#10B981] hover:bg-[#0B6B4F] dark:hover:bg-[#059669] text-white dark:text-[#0C0D0E] dark:font-extrabold py-3 text-xs uppercase tracking-widest-editorial font-bold transition-colors"
+                >
+                  {loading ? (
+                    <>
+                      <Loading size="sm" color="secondary" />
+                      <span>SENDING EMAIL...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>SEND RESET LINK</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setErrorMsg('');
+                    setMode('signin');
+                  }}
+                  className="w-full text-xs uppercase tracking-wider font-bold text-[#888888] dark:text-[#9CA3AF] hover:text-[#111111] dark:hover:text-[#F3F4F6] py-2"
+                >
+                  Back to Sign In
+                </button>
+              </form>
+            )}
+          </>
         )}
 
         {/* OTP Verify Flow (For Signup) */}
@@ -550,7 +699,7 @@ export default function AuthModal({
         )}
 
         {/* Google OAuth Button */}
-        {mode !== 'otp_verify' && (
+        {mode !== 'otp_verify' && mode !== 'forgot' && (
           <div className="mt-6">
             <div className="relative my-6 text-center">
               <div className="absolute inset-0 flex items-center">

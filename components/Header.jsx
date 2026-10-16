@@ -14,7 +14,11 @@ export default function Header({
   isCloudConnected,
   theme,
   onToggleTheme,
+  variant = 'app', // 'landing' hides the project switcher and quota badge
+  onGoHome,
 }) {
+  const isLanding = variant === 'landing';
+
   return (
     <header className="w-full bg-[#F7F7F7] dark:bg-[#141619] border-b border-[#E0E0E0] dark:border-[#26292E] sticky top-0 z-40 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -26,7 +30,17 @@ export default function Header({
 
         {/* Center Column: Stylized Swiss Logo */}
         <div className="flex items-center justify-center">
-          <a href="#" className="group flex items-center space-x-1">
+          <a
+            href="/"
+            onClick={(e) => {
+              if (onGoHome) {
+                e.preventDefault();
+                onGoHome();
+              }
+            }}
+            title="Home"
+            className="group flex items-center space-x-1"
+          >
             <span className="font-extrabold text-xl tracking-tight text-[#111111] dark:text-[#F3F4F6]">
               SEO
             </span>
@@ -62,23 +76,27 @@ export default function Header({
           </button>
 
           {/* Active Project Switcher Pill */}
-          <button
-            onClick={onOpenProjectModal}
-            className="flex items-center space-x-2 text-xs uppercase tracking-wider font-semibold px-3 py-1.5 rounded border border-[#E0E0E0] dark:border-[#26292E] bg-white dark:bg-[#1A1D21] hover:border-[#111111] dark:hover:border-[#F3F4F6] transition-colors text-[#111111] dark:text-[#F3F4F6]"
-            title="Switch or manage active website/project"
-          >
-            <Globe className="w-3.5 h-3.5 text-[#0B6B4F] dark:text-[#10B981]" />
-            <span className="max-w-[120px] truncate">{activeProject?.name || 'My SaaS'}</span>
-          </button>
+          {!isLanding && (
+            <button
+              onClick={onOpenProjectModal}
+              className="flex items-center space-x-2 text-xs uppercase tracking-wider font-semibold px-3 py-1.5 rounded border border-[#E0E0E0] dark:border-[#26292E] bg-white dark:bg-[#1A1D21] hover:border-[#111111] dark:hover:border-[#F3F4F6] transition-colors text-[#111111] dark:text-[#F3F4F6]"
+              title="Switch or manage active website/project"
+            >
+              <Globe className="w-3.5 h-3.5 text-[#0B6B4F] dark:text-[#10B981]" />
+              <span className="max-w-[120px] truncate">{activeProject?.name || 'My SaaS'}</span>
+            </button>
+          )}
 
           {/* Secured quota badge */}
-          <div className="hidden sm:flex items-center space-x-1.5 px-2.5 py-1 rounded bg-[#E8F3EE] dark:bg-[#10B981]/15 border border-[#0B6B4F]/20 dark:border-[#10B981]/30 text-xs text-[#0B6B4F] dark:text-[#10B981] font-bold">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>
-              {securedCount}
-              {user ? ' Secured' : ` / ${freeLimit} Free`}
-            </span>
-          </div>
+          {!isLanding && (
+            <div className="hidden sm:flex items-center space-x-1.5 px-2.5 py-1 rounded bg-[#E8F3EE] dark:bg-[#10B981]/15 border border-[#0B6B4F]/20 dark:border-[#10B981]/30 text-xs text-[#0B6B4F] dark:text-[#10B981] font-bold">
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>
+                {securedCount}
+                {user ? ' Secured' : ` / ${freeLimit} Free`}
+              </span>
+            </div>
+          )}
 
           {/* User Account / Auth Button */}
           {user ? (

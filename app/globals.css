@@ -13,9 +13,11 @@
   --color-accent-hover: #08523C;
   --color-accent-light: #E8F3EE;
   --color-border: #E0E0E0;
+  --ring-color: rgba(11, 107, 79, 0.4);
 }
 
 .dark {
+  --ring-color: rgba(16, 185, 129, 0.45);
   --color-bg: #0C0D0E;
   --color-surface: #141619;
   --color-surface-muted: #1A1D21;
@@ -54,6 +56,66 @@ body {
 /* Editorial divider */
 .editorial-border {
   border-color: var(--color-border);
+}
+
+/* ── Landing page ─────────────────────────────────────────────────────────── */
+
+/* Faint Swiss grid that fades out toward the edges */
+.landing-grid {
+  background-image:
+    linear-gradient(to right, var(--color-border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-border) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 25%, transparent 72%);
+  mask-image: radial-gradient(ellipse at 50% 40%, #000 25%, transparent 72%);
+}
+
+/* Animated emerald gradient text */
+.text-shimmer {
+  background-image: linear-gradient(90deg, #0B6B4F 0%, #34D399 25%, #0B6B4F 50%, #34D399 75%, #0B6B4F 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.dark .text-shimmer {
+  background-image: linear-gradient(90deg, #10B981 0%, #6EE7B7 25%, #10B981 50%, #6EE7B7 75%, #10B981 100%);
+}
+
+/* Scroll-reveal (see components/landing/Reveal.jsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Pause the directory ticker on hover */
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Respect "reduce motion": no movement, content stays visible */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-fade-up,
+  .animate-float,
+  .animate-float-slow,
+  .animate-shimmer,
+  .animate-marquee,
+  .animate-ring,
+  .animate-spin-slow {
+    animation: none !important;
+  }
 }
 
 /* Subtle scrollbars */
