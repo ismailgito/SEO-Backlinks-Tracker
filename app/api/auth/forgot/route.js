@@ -1,18 +1,13 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseAdminClient } from '@/lib/supabase/admin';
 import { sendPasswordResetEmail } from '@/lib/resend';
-import { hitRateLimit } from '@/lib/rate-limit';
+import { hitRateLimit, getClientIp } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
 
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_EMAIL = 3;
 const MAX_PER_IP = 10;
-
-function getClientIp(request) {
-  const forwarded = request.headers.get('x-forwarded-for');
-  return (forwarded ? forwarded.split(',')[0].trim() : '') || 'unknown';
-}
 
 // The reset link is built from a trusted base URL, never from request headers
 // (a spoofed Host header would otherwise let an attacker point the link at

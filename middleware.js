@@ -28,16 +28,28 @@ export async function middleware(request) {
     },
   });
 
+  // Anonymous visitors have no Supabase auth cookie, so there is nothing to
+  // refresh: skip the network round-trip to Supabase on every request.
+  const hasAuthCookie = request.cookies.getAll().some((c) => c.name.startsWith('sb-'));
+  if (!hasAuthCookie) {
+    return response;
+  }
+
   // Refreshes the session token if expired — must run before any
   // supabase.auth.getUser() call. Do not add code between client creation
   // and getUser().
-  await supabase.auth.getUser();
+  try {
+    await supabase.auth.getUser();
+  } catch (error) {
+    // A Supabase outage must not take every page down with it.
+    console.error('[middleware] Session refresh failed:', error?.message || error);
+  }
 
   return response;
 }
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
+    '/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|js|json|txt|woff2?)$).*)',
   ],
 };

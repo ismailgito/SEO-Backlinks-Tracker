@@ -1,54 +1,48 @@
 import { NextResponse } from 'next/server';
-import { sendOtpEmail, isResendConfigured } from '@/lib/resend';
 import { isSupabaseServerConfigured } from '@/lib/supabase/server';
-import { beginOtpRequest, consumeOtp, OTP_TTL_SECONDS } from '@/lib/otp-store';
+import { issueOtp, EMAIL_RE } from '@/lib/otp-flow';
+import { hitRateLimit, getClientIp } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
 
-const SEND_TIMEOUT_MS = 60 * 1000;
-let warnedDefaultSender = false;
+const IP_WINDOW_MS = 10 * 60 * 1000;
+const MAX_OTP_REQUESTS_PER_IP = 20;
 
-function withTimeout(promise, ms) {
-  let timer;
-  const timeout = new Promise((_, reject) => {
-    timer = setTimeout(
-      () => reject(new Error('Email service timed out. Please try again.')),
-      ms
-    );
-  });
-  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
-}
-
+// Signup verification codes only. Sign-in codes are issued by /api/auth/signin
+// after the password check, and are bound to that purpose, so a code requested
+// here can never be redeemed to sign in to an existing account.
+//
+// Account creation happens in /api/auth/verify, after the code is proven.
+// Creating the user here (as this route used to) made "Resend code" fail with
+// "User already exists", left unverified accounts behind whenever sending
+// failed, and let anyone pre-register someone else's email with their own
+// password and probe which emails are registered.
 export async function POST(request) {
   try {
-    const { email, type, password } = await request.json();
+    const body = await request.json().catch(() => ({}));
+    const email = typeof body?.email === 'string' ? body.email.trim().toLowerCase() : '';
+    const { password } = body || {};
 
-    if (!email || !email.includes('@')) {
+    if (!email || email.length > 254 || !EMAIL_RE.test(email)) {
       return NextResponse.json(
         { error: 'Valid email address is required' },
         { status: 400 }
       );
     }
 
-    if (type === 'signup' && isSupabaseServerConfigured()) {
-      const { getSupabaseAdminClient } = require('@/lib/supabase/admin');
-      const admin = getSupabaseAdminClient();
-      if (admin) {
-        if (!password || password.length < 8) {
-          return NextResponse.json({ error: 'Password must be at least 8 characters long' }, { status: 400 });
-        }
-        const { data, error } = await admin.auth.admin.createUser({
-          email: email.toLowerCase(),
-          password: password,
-          email_confirm: false,
-        });
-        
-        if (error) {
-          if (error.message.includes('already') || error.code === 'user_already_exists') {
-            return NextResponse.json({ error: 'User already exists' }, { status: 400 });
-          }
-        }
-      }
+    if (typeof password !== 'string' || password.length < 8) {
+      return NextResponse.json({ error: 'Password must be at least 8 characters long' }, { status: 400 });
+    }
+
+    const ipLimit = hitRateLimit(`otp:ip:${getClientIp(request)}`, MAX_OTP_REQUESTS_PER_IP, IP_WINDOW_MS);
+    if (!ipLimit.ok) {
+      return NextResponse.json(
+        {
+          error: `Too many requests. Try again in ${Math.ceil(ipLimit.retryAfter / 60)} minute(s).`,
+          retryAfter: ipLimit.retryAfter,
+        },
+        { status: 429, headers: { 'Retry-After': String(ipLimit.retryAfter) } }
+      );
     }
 
     if (!isSupabaseServerConfigured()) {
@@ -58,57 +52,8 @@ export async function POST(request) {
       );
     }
 
-    if (
-      !warnedDefaultSender &&
-      isResendConfigured() &&
-      !process.env.RESEND_FROM_EMAIL
-    ) {
-      warnedDefaultSender = true;
-      console.warn(
-        '[auth] RESEND_FROM_EMAIL is not set — defaulting to onboarding@resend.dev, ' +
-          'which only delivers to the Resend account owner (test mode). ' +
-          'Set a verified sender in .env.local for production.'
-      );
-    }
-
-    const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
-
-    const stored = await beginOtpRequest(email, otpCode);
-    if (!stored.ok) {
-      return NextResponse.json(
-        {
-          error: stored.error || 'Could not create verification code. Please try again.',
-          retryAfter: stored.retryAfter,
-        },
-        { status: stored.retryAfter ? 429 : 500 }
-      );
-    }
-
-    let result;
-    try {
-      result = await withTimeout(
-        sendOtpEmail({ toEmail: email, otpCode }),
-        SEND_TIMEOUT_MS
-      );
-    } catch (err) {
-      await consumeOtp(email);
-      return NextResponse.json({ error: err.message }, { status: 504 });
-    }
-
-    if (!result.success) {
-      await consumeOtp(email);
-      return NextResponse.json(
-        { error: result.error, retryAfter: result.retryAfter },
-        { status: result.retryAfter ? 429 : 502 }
-      );
-    }
-
-    return NextResponse.json({
-      success: true,
-      simulated: Boolean(result.simulated),
-      otpCode: result.simulated ? otpCode : undefined,
-      expiresIn: OTP_TTL_SECONDS,
-    });
+    const { status, body: result } = await issueOtp(email, 'signup');
+    return NextResponse.json(result, { status });
   } catch (error) {
     console.error('[auth] OTP request failed:', error);
     return NextResponse.json(

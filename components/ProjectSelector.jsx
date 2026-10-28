@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Globe, Plus, Check, Trash2 } from 'lucide-react';
+import useModal from '@/components/useModal';
 
 export default function ProjectSelector({
   isOpen,
@@ -16,6 +17,17 @@ export default function ProjectSelector({
   const [name, setName] = useState('');
   const [url, setUrl] = useState('');
 
+  const dialogRef = useModal(isOpen, onClose);
+
+  // Drop any half-typed draft when the dialog closes
+  useEffect(() => {
+    if (!isOpen) {
+      setIsCreating(false);
+      setName('');
+      setUrl('');
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const handleCreate = (e) => {
@@ -24,7 +36,7 @@ export default function ProjectSelector({
 
     onCreateProject({
       name: name.trim(),
-      website_url: url.trim() || 'https://mywebsite.com',
+      website_url: url.trim(),
     });
 
     setName('');
@@ -34,9 +46,18 @@ export default function ProjectSelector({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-[#F7F7F7] dark:bg-[#141619] border border-[#111111] dark:border-[#26292E] max-w-md w-full p-6 sm:p-8 shadow-2xl relative transition-colors">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="project-modal-title"
+        tabIndex={-1}
+        className="bg-[#F7F7F7] dark:bg-[#141619] border border-[#111111] dark:border-[#26292E] max-w-md w-full p-6 sm:p-8 shadow-2xl relative transition-colors max-h-[90vh] overflow-y-auto focus:outline-none"
+      >
         <button
+          type="button"
           onClick={onClose}
+          aria-label="Close dialog"
           className="absolute right-4 top-4 text-[#888888] dark:text-[#9CA3AF] hover:text-[#111111] dark:hover:text-[#F3F4F6] p-1 transition-colors"
         >
           <X className="w-5 h-5" />
@@ -46,7 +67,7 @@ export default function ProjectSelector({
           <div className="text-[11px] font-bold text-[#0B6B4F] dark:text-[#10B981] uppercase tracking-widest-editorial mb-1">
             CAMPAIGN TARGETS
           </div>
-          <h2 className="text-2xl font-black text-[#111111] dark:text-[#F3F4F6] uppercase tracking-tight">
+          <h2 id="project-modal-title" className="text-2xl font-black text-[#111111] dark:text-[#F3F4F6] uppercase tracking-tight">
             PROJECT / WEBSITES
           </h2>
           <p className="text-xs text-[#888888] dark:text-[#9CA3AF] mt-1">
@@ -96,10 +117,11 @@ export default function ProjectSelector({
                   )}
                   {projects.length > 1 && (
                     <button
+                      type="button"
                       onClick={() => onDeleteProject(p.id)}
                       className="p-1 text-[#888888] dark:text-[#9CA3AF] hover:text-red-600 dark:hover:text-red-400 transition-colors"
                       title="Delete Project"
-                      aria-label="Delete project"
+                      aria-label={`Delete project ${p.name}`}
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
@@ -114,10 +136,11 @@ export default function ProjectSelector({
         {isCreating ? (
           <form onSubmit={handleCreate} className="space-y-3 pt-4 border-t border-[#E0E0E0] dark:border-[#26292E]">
             <div>
-              <label className="block text-xs font-bold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-widest-editorial mb-1">
+              <label htmlFor="project-name" className="block text-xs font-bold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-widest-editorial mb-1">
                 Project Name
               </label>
               <input
+                id="project-name"
                 type="text"
                 required
                 placeholder="e.g. AI Content Writer"
@@ -127,10 +150,11 @@ export default function ProjectSelector({
               />
             </div>
             <div>
-              <label className="block text-xs font-bold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-widest-editorial mb-1">
+              <label htmlFor="project-url" className="block text-xs font-bold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-widest-editorial mb-1">
                 Website URL
               </label>
               <input
+                id="project-url"
                 type="url"
                 placeholder="https://mywebsite.com"
                 value={url}

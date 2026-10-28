@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import Header from '@/components/Header';
 import Landing from '@/components/landing/Landing';
 import Filters from '@/components/Filters';
@@ -28,6 +28,13 @@ import {
   getEvents,
   recordSubmission,
   exportDataAsCsv,
+  deleteProjectData,
+  getTotalSecuredCount,
+  setStorageScope,
+  migrateLegacyData,
+  adoptGuestData,
+  safeGetItem,
+  safeSetItem,
   FREE_LIMIT,
 } from '@/lib/storage';
 
@@ -53,10 +60,13 @@ export default function HomePage() {
   const [activeProjectId, setActiveId] = useState('');
   const [submissions, setSubmissionsState] = useState({});
   const [events, setEventsState] = useState([]);
+  const [totalSecured, setTotalSecured] = useState(0); // across all projects (guest quota)
+  const ownerRef = useRef('guest'); // 'guest' or the signed-in user's id
 
   // Modals
   const [isSubmissionModalOpen, setIsSubmissionModalOpen] = useState(false);
   const [selectedSourceForModal, setSelectedSourceForModal] = useState(null);
+  const [modalInitialStatus, setModalInitialStatus] = useState(null);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authModalMode, setAuthModalMode] = useState('signup');
   const [authLimitReason, setAuthLimitReason] = useState('');
@@ -77,7 +87,7 @@ export default function HomePage() {
   // Initialize theme and data from local storage
   useEffect(() => {
     // 1. Initialize Theme
-    const savedTheme = localStorage.getItem('seo_theme');
+    const savedTheme = safeGetItem('seo_theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
     setTheme(initialTheme);
@@ -87,21 +97,13 @@ export default function HomePage() {
       document.documentElement.classList.remove('dark');
     }
 
-    // 2. Initialize Session and Projects
+    // 2. Initialize Session and Projects (data is stored per owner)
+    migrateLegacyData();
     const session = getStoredSession();
+    ownerRef.current = session?.id || 'guest';
+    setStorageScope(session?.id || null);
     if (session) setUser(session);
-
-    const projs = getProjects();
-    setProjects(projs);
-
-    const activeId = getActiveProjectId();
-    setActiveId(activeId);
-
-    const subs = getSubmissions(activeId);
-    setSubmissionsState(subs);
-
-    const evs = getEvents(activeId);
-    setEventsState(evs);
+    loadOwnerData();
 
     // A reload while exploring should stay in the app; a fresh visit is the landing page
     if (window.history.state?.view === 'explore') {
@@ -142,39 +144,66 @@ export default function HomePage() {
     });
 
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user) {
-        const sbUser = toAppUser(session.user);
-        setUser(sbUser);
-        saveStoredSession(sbUser);
-      }
+      // No cookie session means the remembered user is stale (expired, or signed
+      // out in another tab): drop them instead of showing a signed-in UI.
+      applyOwner(session?.user ? toAppUser(session.user) : null);
     });
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_OUT') {
-        setUser(null);
-        saveStoredSession(null);
+        applyOwner(null);
       } else if (session?.user) {
-        const sbUser = toAppUser(session.user);
-        setUser(sbUser);
-        saveStoredSession(sbUser);
+        applyOwner(toAppUser(session.user));
       }
     });
 
     return () => subscription.unsubscribe();
+    // applyOwner only touches state setters, a ref and storage helpers, so the
+    // first render's copy stays valid; re-subscribing on every render would not.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Toggle Theme handler
   const handleToggleTheme = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(nextTheme);
-    localStorage.setItem('seo_theme', nextTheme);
+    safeSetItem('seo_theme', nextTheme);
     if (nextTheme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
+  };
+
+  // Load everything belonging to the current owner (guest or signed-in user)
+  const loadOwnerData = () => {
+    const projs = getProjects();
+    // The remembered active project may no longer exist (cleared in another tab)
+    const stored = getActiveProjectId();
+    const activeId = projs.some((p) => p.id === stored) ? stored : projs[0].id;
+    setProjects(projs);
+    setActiveId(activeId);
+    setActiveProjectId(activeId);
+    setSubmissionsState(getSubmissions(activeId));
+    setEventsState(getEvents(activeId));
+    setTotalSecured(getTotalSecuredCount());
+    setCurrentPage(1);
+  };
+
+  // Switch the signed-in identity. Data is namespaced per owner, so changing
+  // owner swaps the visible projects/submissions instead of leaking the
+  // previous account's data. A guest's work moves into their new account.
+  const applyOwner = (nextUser) => {
+    setUser(nextUser);
+    saveStoredSession(nextUser);
+    const nextOwner = nextUser?.id || 'guest';
+    if (ownerRef.current === nextOwner) return;
+    ownerRef.current = nextOwner;
+    if (nextUser) adoptGuestData(nextUser.id);
+    setStorageScope(nextUser?.id || null);
+    loadOwnerData();
   };
 
   // Sync state when active project changes
@@ -253,10 +282,18 @@ export default function HomePage() {
 
   // Pagination calculation
   const totalPages = Math.ceil(filteredSources.length / pageSize) || 1;
+  // The list can shrink without a filter change (e.g. quick-set a row so it no
+  // longer matches the workflow filter), leaving currentPage past the end.
+  const page = Math.min(currentPage, totalPages);
   const paginatedSources = useMemo(() => {
-    const start = (currentPage - 1) * pageSize;
+    const start = (page - 1) * pageSize;
     return filteredSources.slice(start, start + pageSize);
-  }, [filteredSources, currentPage, pageSize]);
+  }, [filteredSources, page, pageSize]);
+
+  const goToPage = (next) => {
+    setCurrentPage(Math.min(Math.max(1, next), totalPages));
+    document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   // Handle Submission update
   const handleSaveSubmission = ({ source, newStatus, liveUrl, notes }) => {
@@ -281,11 +318,19 @@ export default function HomePage() {
 
     setSubmissionsState(getSubmissions(activeProjectId));
     setEventsState(getEvents(activeProjectId));
+    setTotalSecured(getTotalSecuredCount());
     return result;
   };
 
   const handleQuickStatusChange = (source, newStatus) => {
     const existing = submissions[source.id] || {};
+    // A Secured link needs the live URL: open the form instead of saving without one.
+    if (newStatus === 'secured' && !existing.live_url) {
+      setSelectedSourceForModal(source);
+      setModalInitialStatus('secured');
+      setIsSubmissionModalOpen(true);
+      return;
+    }
     handleSaveSubmission({
       source,
       newStatus,
@@ -296,20 +341,27 @@ export default function HomePage() {
 
   // Auth Callbacks
   const handleAuthSuccess = (loggedUser) => {
-    setUser(loggedUser);
-    saveStoredSession(loggedUser);
+    applyOwner(loggedUser);
     setAuthLimitReason('');
     setIsAuthModalOpen(false);
   };
 
   const handleSignOut = async () => {
-    setUser(null);
-    saveStoredSession(null);
+    applyOwner(null);
     if (isSupabaseConfigured()) {
+      const auth = getSupabaseBrowserClient().auth;
       try {
-        await getSupabaseBrowserClient().auth.signOut();
-      } catch {
-        // Session already cleared locally
+        const { error } = await auth.signOut();
+        if (error) throw error;
+      } catch (error) {
+        // If the server call failed the cookie session would survive and sign the
+        // person straight back in on reload: clear at least this browser's copy.
+        console.error('[auth] Sign out failed, clearing local session:', error?.message || error);
+        try {
+          await auth.signOut({ scope: 'local' });
+        } catch {
+          // Nothing more to do
+        }
       }
     }
   };
@@ -330,9 +382,19 @@ export default function HomePage() {
 
   const handleDeleteProject = (projId) => {
     if (projects.length <= 1) return;
+    const target = projects.find((p) => p.id === projId);
+    if (
+      !window.confirm(
+        `Delete "${target?.name || 'this project'}" and all of its tracked submissions? This cannot be undone.`
+      )
+    ) {
+      return;
+    }
     const remaining = projects.filter((p) => p.id !== projId);
     setProjects(remaining);
     saveProjects(remaining);
+    deleteProjectData(projId);
+    setTotalSecured(getTotalSecuredCount());
     if (activeProjectId === projId) {
       reloadProjectData(remaining[0].id);
     }
@@ -385,7 +447,7 @@ export default function HomePage() {
           setIsAuthModalOpen(true);
         }}
         onSignOut={handleSignOut}
-        securedCount={securedCount}
+        securedCount={user ? securedCount : totalSecured}
         freeLimit={FREE_LIMIT}
         isCloudConnected={isSupabaseReady}
         theme={theme}
@@ -434,7 +496,7 @@ export default function HomePage() {
               <div className="text-xs text-[#888888] dark:text-[#9CA3AF] hidden md:flex items-center space-x-2 font-mono">
                 <span>Free Guest Limit:</span>
                 <span className="font-bold text-[#0B6B4F] dark:text-[#10B981]">
-                  {securedCount} / {FREE_LIMIT} Secured
+                  {totalSecured} / {FREE_LIMIT} Secured
                 </span>
               </div>
             )}
@@ -516,15 +578,15 @@ export default function HomePage() {
             {totalPages > 1 && (
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white dark:bg-[#141619] border border-[#E0E0E0] dark:border-[#26292E] p-4 transition-colors">
                 <div className="text-xs text-[#888888] dark:text-[#9CA3AF]">
-                  Page <strong className="text-[#111111] dark:text-[#F3F4F6]">{currentPage}</strong> of{' '}
+                  Page <strong className="text-[#111111] dark:text-[#F3F4F6]">{page}</strong> of{' '}
                   <strong className="text-[#111111] dark:text-[#F3F4F6]">{totalPages}</strong> (
                   {filteredSources.length} total directories)
                 </div>
 
                 <div className="flex items-center space-x-2">
                   <button
-                    onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                    disabled={currentPage === 1}
+                    onClick={() => goToPage(page - 1)}
+                    disabled={page === 1}
                     className="flex items-center space-x-1 px-3 py-1.5 border border-[#E0E0E0] dark:border-[#26292E] text-xs uppercase font-bold disabled:opacity-40 hover:border-[#111111] dark:hover:border-[#F3F4F6] text-[#111111] dark:text-[#F3F4F6] transition-colors"
                   >
                     <ChevronLeft className="w-4 h-4" />
@@ -537,8 +599,8 @@ export default function HomePage() {
                       const seen = new Set();
                       for (let i = 0; i < Math.min(5, totalPages); i++) {
                         let pageNum = i + 1;
-                        if (totalPages > 5 && currentPage > 3) {
-                          pageNum = currentPage - 3 + i;
+                        if (totalPages > 5 && page > 3) {
+                          pageNum = page - 3 + i;
                           if (pageNum > totalPages) pageNum = totalPages - (4 - i);
                         }
                         pageNum = Math.max(1, pageNum);
@@ -550,9 +612,10 @@ export default function HomePage() {
                       return pageNums.map((pageNum) => (
                         <button
                           key={pageNum}
-                          onClick={() => setCurrentPage(pageNum)}
+                          onClick={() => goToPage(pageNum)}
+                          aria-current={page === pageNum ? 'page' : undefined}
                           className={`w-8 h-8 text-xs font-mono font-bold transition-colors ${
-                            currentPage === pageNum
+                            page === pageNum
                               ? 'bg-[#111111] dark:bg-[#F3F4F6] text-white dark:text-[#111111]'
                               : 'bg-[#F7F7F7] dark:bg-[#1A1D21] text-[#555555] dark:text-[#9CA3AF] hover:bg-[#EAEAEA] dark:hover:bg-[#26292E]'
                           }`}
@@ -564,8 +627,8 @@ export default function HomePage() {
                   </div>
 
                   <button
-                    onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-                    disabled={currentPage === totalPages}
+                    onClick={() => goToPage(page + 1)}
+                    disabled={page === totalPages}
                     className="flex items-center space-x-1 px-3 py-1.5 border border-[#E0E0E0] dark:border-[#26292E] text-xs uppercase font-bold disabled:opacity-40 hover:border-[#111111] dark:hover:border-[#F3F4F6] text-[#111111] dark:text-[#F3F4F6] transition-colors"
                   >
                     <span>NEXT</span>
@@ -600,7 +663,9 @@ export default function HomePage() {
         onClose={() => {
           setIsSubmissionModalOpen(false);
           setSelectedSourceForModal(null);
+          setModalInitialStatus(null);
         }}
+        initialStatus={modalInitialStatus}
         source={selectedSourceForModal}
         currentSubmission={
           selectedSourceForModal ? submissions[selectedSourceForModal.id] : null

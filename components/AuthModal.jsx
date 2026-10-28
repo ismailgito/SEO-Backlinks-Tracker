@@ -4,6 +4,13 @@ import React, { useState, useEffect } from 'react';
 import { X, Mail, KeyRound, Lock, CheckCircle2, AlertCircle, ArrowRight, Sparkles, RefreshCw } from 'lucide-react';
 import { isSupabaseConfigured, getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { Loading } from '@/components/Loading';
+import useModal from '@/components/useModal';
+
+// Demo sign-in (no credential check) is for local development only. In a
+// production build a missing/invalid Supabase config must show an error, never
+// sign anyone in.
+const DEMO_ALLOWED = process.env.NODE_ENV !== 'production';
+const NOT_CONFIGURED_MSG = 'Authentication is not configured. Please try again later.';
 
 function toFriendlyError(err, fallback) {
   if (err?.name === 'TypeError') {
@@ -31,6 +38,9 @@ export default function AuthModal({
   const [simulatedOtp, setSimulatedOtp] = useState('');
   const [resendCooldown, setResendCooldown] = useState(0);
   const [resetEmailSent, setResetEmailSent] = useState(false);
+  // Which flow the emailed code belongs to: 'signup' (verify a new email) or
+  // 'signin' (second step after a correct password).
+  const [otpPurpose, setOtpPurpose] = useState('signup');
 
   // Reset modal state whenever it opens
   useEffect(() => {
@@ -45,6 +55,7 @@ export default function AuthModal({
       setSuccessMsg('');
       setResendCooldown(0);
       setResetEmailSent(false);
+      setOtpPurpose('signup');
     }
   }, [isOpen, initialMode]);
 
@@ -55,6 +66,8 @@ export default function AuthModal({
     return () => clearInterval(t);
   }, [resendCooldown]);
 
+  const dialogRef = useModal(isOpen, onClose);
+
   if (!isOpen) return null;
 
   const isLiveSupabase = isSupabaseConfigured();
@@ -62,6 +75,10 @@ export default function AuthModal({
   const handleGoogleAuth = async () => {
     setErrorMsg('');
     if (!isLiveSupabase) {
+      if (!DEMO_ALLOWED) {
+        setErrorMsg(NOT_CONFIGURED_MSG);
+        return;
+      }
       const demoUser = {
         id: `google-${Date.now()}`,
         email: 'google-user@example.com',
@@ -90,6 +107,15 @@ export default function AuthModal({
     }
   };
 
+  // Tab / back navigation: drop messages (and any server cooldown) from the
+  // previous screen so they don't show up on the next one.
+  const switchMode = (next) => {
+    setErrorMsg('');
+    setSuccessMsg('');
+    setResendCooldown(0);
+    setMode(next);
+  };
+
   const sendOtpCode = async ({ isResend = false, type = 'signup' } = {}) => {
     if (!email || !email.includes('@')) {
       setErrorMsg('Please enter a valid email address');
@@ -101,14 +127,21 @@ export default function AuthModal({
 
     try {
       if (isLiveSupabase) {
-        const response = await fetch('/api/auth/otp', {
+        // Sign-in goes through /api/auth/signin, which checks the password on the
+        // server and only then emails the code: the browser never gets a session
+        // from the password alone.
+        const response = await fetch(type === 'signin' ? '/api/auth/signin' : '/api/auth/otp', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, type, password }),
+          body: JSON.stringify({ email, password }),
         });
         const data = await response.json().catch(() => ({}));
         if (!response.ok) {
-          throw new Error(data.error || 'Failed to send verification code');
+          // Server-enforced wait (seconds): mirror it so the button isn't hammered.
+          if (data.retryAfter) setResendCooldown(Math.min(3600, Math.ceil(data.retryAfter)));
+          throw new Error(
+            data.error || (type === 'signin' ? 'Sign in failed' : 'Failed to send verification code')
+          );
         }
         if (data.simulated && data.otpCode) {
           setSimulatedOtp(data.otpCode);
@@ -116,22 +149,29 @@ export default function AuthModal({
         } else {
           setSimulatedOtp('');
           setSuccessMsg(
-            `${isResend ? 'New code sent' : 'Verification code sent'} to ${email}`
+            type === 'signin' && !isResend
+              ? `Password accepted. We sent a 6-digit code to ${email}`
+              : `${isResend ? 'New code sent' : 'Verification code sent'} to ${email}`
           );
         }
+        setOtpPurpose(type);
         setOtpCode('');
         setResendCooldown(30);
         setMode('otp_verify');
       } else {
+        if (!DEMO_ALLOWED) throw new Error(NOT_CONFIGURED_MSG);
         const code = Math.floor(100000 + Math.random() * 900000).toString();
         setSimulatedOtp(code);
         setSuccessMsg(`[DEMO MODE] Use code: ${code}`);
+        setOtpPurpose(type);
         setOtpCode('');
         setResendCooldown(30);
         setMode('otp_verify');
       }
     } catch (err) {
-      setErrorMsg(toFriendlyError(err, 'Failed to send verification code'));
+      setErrorMsg(
+        toFriendlyError(err, type === 'signin' ? 'Sign in failed' : 'Failed to send verification code')
+      );
     } finally {
       setLoading(false);
     }
@@ -150,6 +190,9 @@ export default function AuthModal({
     await sendOtpCode({ type: 'signup' });
   };
 
+  // Step 1 of two-step sign-in: the password is checked server-side and, if it
+  // is correct, a one-time code is emailed. The person is NOT signed in yet;
+  // that only happens after the code is verified (handleVerifyOtp).
   const handleSignin = async (e) => {
     e.preventDefault();
     if (!email || !email.includes('@')) {
@@ -160,49 +203,14 @@ export default function AuthModal({
       setErrorMsg('Please enter your password');
       return;
     }
-
-    setErrorMsg('');
-    setLoading(true);
-
-    try {
-      if (isLiveSupabase) {
-        const supabase = getSupabaseBrowserClient();
-        const { data, error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-
-        if (error) {
-          throw new Error(error.message || 'Invalid email or password');
-        }
-
-        onSuccess({
-          id: data.user.id,
-          email: data.user.email,
-          name: data.user.user_metadata?.name || data.user.email?.split('@')[0],
-        });
-        onClose();
-      } else {
-        // Offline demo sign in
-        const mockUser = {
-          id: `usr-${Date.now()}`,
-          email,
-          name: email.split('@')[0],
-        };
-        onSuccess(mockUser);
-        onClose();
-      }
-    } catch (err) {
-      setErrorMsg(toFriendlyError(err, 'Login failed'));
-    } finally {
-      setLoading(false);
-    }
+    await sendOtpCode({ type: 'signin' });
   };
 
   const openForgotPassword = () => {
     setErrorMsg('');
     setSuccessMsg('');
     setResetEmailSent(false);
+    setResendCooldown(0);
     setPassword('');
     setMode('forgot');
   };
@@ -244,7 +252,7 @@ export default function AuthModal({
 
   const handleResendOtp = async () => {
     if (resendCooldown > 0 || loading) return;
-    await sendOtpCode({ isResend: true, type: 'signup' });
+    await sendOtpCode({ isResend: true, type: otpPurpose });
   };
 
   const handleVerifyOtp = async (e) => {
@@ -266,7 +274,9 @@ export default function AuthModal({
           body: JSON.stringify({
             email,
             code: otpCode,
-            password: password,
+            purpose: otpPurpose,
+            // Only a new account takes a password here; sign-in never sends one.
+            ...(otpPurpose === 'signup' ? { password } : {}),
           }),
         });
         const data = await response.json().catch(() => ({}));
@@ -289,6 +299,7 @@ export default function AuthModal({
         });
         onClose();
       } else {
+        if (!DEMO_ALLOWED) throw new Error(NOT_CONFIGURED_MSG);
         if (simulatedOtp && otpCode !== simulatedOtp) {
           setErrorMsg('Invalid verification code. Try again or check the demo code.');
           setLoading(false);
@@ -312,10 +323,19 @@ export default function AuthModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-[#F7F7F7] dark:bg-[#141619] border border-[#111111] dark:border-[#26292E] max-w-md w-full p-6 sm:p-8 shadow-2xl relative transition-colors">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="auth-modal-title"
+        tabIndex={-1}
+        className="bg-[#F7F7F7] dark:bg-[#141619] border border-[#111111] dark:border-[#26292E] max-w-md w-full p-6 sm:p-8 shadow-2xl relative transition-colors max-h-[90vh] overflow-y-auto focus:outline-none"
+      >
         {/* Close Button */}
         <button
+          type="button"
           onClick={onClose}
+          aria-label="Close dialog"
           className="absolute right-4 top-4 text-[#888888] dark:text-[#9CA3AF] hover:text-[#111111] dark:hover:text-[#F3F4F6] p-1 transition-colors"
         >
           <X className="w-5 h-5" />
@@ -339,7 +359,7 @@ export default function AuthModal({
           <div className="text-[11px] font-bold text-[#0B6B4F] dark:text-[#10B981] uppercase tracking-widest-editorial mb-1">
             ACCOUNT ACCESS
           </div>
-          <h2 className="text-2xl font-black text-[#111111] dark:text-[#F3F4F6] uppercase tracking-tight">
+          <h2 id="auth-modal-title" className="text-2xl font-black text-[#111111] dark:text-[#F3F4F6] uppercase tracking-tight">
             {mode === 'otp_verify'
               ? 'ENTER VERIFICATION CODE'
               : mode === 'forgot'
@@ -359,7 +379,7 @@ export default function AuthModal({
         {mode !== 'otp_verify' && mode !== 'forgot' && (
           <div className="flex border-b border-[#E0E0E0] dark:border-[#26292E] mb-6">
             <button
-              onClick={() => setMode('signup')}
+              onClick={() => switchMode('signup')}
               className={`pb-2 text-xs font-bold uppercase tracking-widest-editorial w-1/2 transition-colors ${
                 mode === 'signup'
                   ? 'border-b-2 border-[#111111] dark:border-[#10B981] text-[#111111] dark:text-[#F3F4F6]'
@@ -369,7 +389,7 @@ export default function AuthModal({
               Sign Up
             </button>
             <button
-              onClick={() => setMode('signin')}
+              onClick={() => switchMode('signin')}
               className={`pb-2 text-xs font-bold uppercase tracking-widest-editorial w-1/2 transition-colors ${
                 mode === 'signin'
                   ? 'border-b-2 border-[#111111] dark:border-[#10B981] text-[#111111] dark:text-[#F3F4F6]'
@@ -634,16 +654,22 @@ export default function AuthModal({
           </>
         )}
 
-        {/* OTP Verify Flow (For Signup) */}
+        {/* OTP verification: signup email check, or step 2 of two-step sign-in */}
         {mode === 'otp_verify' && (
           <form onSubmit={handleVerifyOtp} className="space-y-4">
+            <p className="text-xs text-[#666666] dark:text-[#9CA3AF] leading-relaxed">
+              {otpPurpose === 'signin'
+                ? 'Two-step verification: enter the 6-digit code we emailed you to finish signing in.'
+                : 'Enter the 6-digit code we emailed you to verify your email and create your account.'}
+            </p>
             <div>
-              <label className="block text-xs font-bold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-widest-editorial mb-1">
+              <label htmlFor="otp-code" className="block text-xs font-bold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-widest-editorial mb-1">
                 6-Digit Verification Code
               </label>
               <div className="relative">
                 <KeyRound className="w-4 h-4 text-[#888888] dark:text-[#9CA3AF] absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
+                  id="otp-code"
                   type="text"
                   required
                   inputMode="numeric"
@@ -675,7 +701,7 @@ export default function AuthModal({
             <div className="flex items-center space-x-3 pt-2">
               <button
                 type="button"
-                onClick={() => setMode('signup')}
+                onClick={() => switchMode(otpPurpose)}
                 className="w-1/3 text-xs uppercase tracking-wider font-bold text-[#888888] dark:text-[#9CA3AF] hover:text-[#111111] dark:hover:text-[#F3F4F6] py-3"
               >
                 Back

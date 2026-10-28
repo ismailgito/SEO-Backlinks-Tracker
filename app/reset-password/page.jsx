@@ -39,7 +39,11 @@ export default function ResetPasswordPage() {
   // The /auth/confirm route verified the email link and set a session cookie.
   // No session here means the link was invalid, expired, or already used.
   useEffect(() => {
-    if (!isSupabaseConfigured()) {
+    // A failed/expired link redirects here with ?error=... Don't fall through
+    // to "ready" just because the visitor happens to be signed in already:
+    // that would let them change their own password from a dead link.
+    const linkFailed = new URLSearchParams(window.location.search).has('error');
+    if (linkFailed || !isSupabaseConfigured()) {
       setStatus('invalid');
       return;
     }

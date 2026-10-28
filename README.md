@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/ismailgito/SEO-Backlinks-Tracker"><img alt="Next.js 14" src="https://img.shields.io/badge/Next.js-14-111111?style=flat-square&logo=next.js"></a>
   <a href="https://github.com/ismailgito/SEO-Backlinks-Tracker"><img alt="React 18" src="https://img.shields.io/badge/React-18-149eca?style=flat-square&logo=react"></a>
-  <a href="data/backlinks.json"><img alt="194 catalog records" src="https://img.shields.io/badge/catalog-194%20records-0B6B4F?style=flat-square"></a>
+  <a href="data/backlinks.json"><img alt="192 catalog records" src="https://img.shields.io/badge/catalog-192%20records-0B6B4F?style=flat-square"></a>
   <a href="https://github.com/ismailgito/SEO-Backlinks-Tracker/commits/main"><img alt="Latest commit" src="https://img.shields.io/github/last-commit/ismailgito/SEO-Backlinks-Tracker?style=flat-square"></a>
 </p>
 
@@ -21,13 +21,13 @@ The app combines a curated directory catalog with a practical submission workflo
 
 | Bundled catalog | Count |
 | --- | ---: |
-| Directory records | **194** |
+| Directory records | **192** |
 | Labeled dofollow | **95** |
-| Labeled nofollow | **41** |
-| Follow status unverified | **58** |
+| Labeled nofollow | **40** |
+| Follow status unverified | **57** |
 | Sources in the DR 90+ band | **18** |
 | Domain Rating bands | **10** |
-| Categories | **20** |
+| Categories | **19** |
 
 Counts are calculated from [`data/backlinks.json`](data/backlinks.json). Follow and DR labels are catalog metadata, not a guarantee of current link attributes or SEO results; verify a source before submitting.
 
@@ -51,7 +51,7 @@ Counts are calculated from [`data/backlinks.json`](data/backlinks.json). Follow 
 
 ### Requirements
 
-- Node.js **18.17 or later**
+- Node.js **22 or later** (required by `@supabase/supabase-js`; see `engines` in `package.json`)
 - npm
 
 ### Run locally
@@ -83,19 +83,40 @@ With Supabase variables left blank, project settings, submission statuses, notes
 For OTP authentication and email delivery:
 
 1. Create a Supabase project and copy [`.env.example`](.env.example) to `.env.local`.
-2. Run the SQL files under [`supabase/migrations/`](supabase/migrations/) in timestamp order. The final migration only removes a legacy RPC when present.
+2. Run the SQL files under [`supabase/migrations/`](supabase/migrations/) in timestamp order (init, OTP codes, legacy cleanup, OTP hardening, schema hardening).
 3. Optionally run [`supabase/seed.sql`](supabase/seed.sql) to seed the directory catalog.
 4. Add your Supabase values and configure **either** Gmail SMTP or Resend in `.env.local`.
+
+#### Environment variables
+
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase project (browser + server) |
+| `SUPABASE_SERVICE_ROLE_KEY` | Server-only: OTP storage and account creation. Never expose it to the client |
+| `SMTP_USER`, `SMTP_PASS`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_FROM` | SMTP delivery (Gmail by default; port 465 uses TLS, other ports STARTTLS) |
+| `RESEND_API_KEY`, `RESEND_FROM_EMAIL` | Resend delivery, used when SMTP is not configured |
+| `OTP_HMAC_SECRET` | Optional secret for hashing OTP codes (defaults to the service-role key) |
+| `NEXT_PUBLIC_APP_URL` | Public site URL: password-reset links, canonical URL, sitemap |
+| `NEXT_PUBLIC_FREE_TIER_SECURED_LIMIT` | Secured links a guest may track in total (default 5) |
+
+In production an email transport **must** be configured: without one the OTP endpoint returns an error instead of simulating delivery.
 
 The prepared Supabase schema does not currently make project and backlink-submission records sync across devices; tracker data remains browser-local. Never commit `.env.local` or expose `SUPABASE_SERVICE_ROLE_KEY` in client-side code.
 
 ## Project structure
 
 ```text
-app/                    Next.js app, page, styles, and auth routes
-components/             Catalog, filters, dashboard, and workflow UI
+app/                    Next.js app, page, styles, robots/sitemap
+app/api/auth/           OTP request (otp), OTP verify + session (verify), password reset (forgot)
+app/auth/               OAuth callback and password-reset link confirmation
+app/reset-password/     New-password page
+components/             Catalog, filters, dashboard, workflow UI, modals (useModal hook)
 data/backlinks.json     Bundled directory catalog
-lib/storage.js          Browser persistence, limits, activity, CSV export
+lib/storage.js          Browser persistence (per owner), limits, activity, CSV export
+lib/otp-store.js        OTP codes: Supabase RPC store with attempt/rate limits
+lib/rate-limit.js       Small in-memory fixed-window limiter + client IP helper
+lib/resend.js           SMTP/Resend delivery
+lib/email/              Email templates
 lib/supabase/           Supabase client helpers
 scripts/                Seed generator and README animation renderer
 supabase/migrations/    Optional database/auth SQL
@@ -119,9 +140,19 @@ To fill in the "Built by" section, edit **`lib/creator.js`** (name, role, bio, l
 
 ---
 
+## 🔐 Two-step Sign-in
+
+Sign In → enter email + password → `POST /api/auth/signin` checks the password **on the server**, discards the session Supabase returns, and emails a 6-digit code → enter the code → `POST /api/auth/verify` (`purpose: "signin"`) issues the real session. A correct password alone never signs anyone in.
+
+- Codes are bound to their purpose: a **signup** code can't be used to sign in, and signing up with an email that already has an account is refused instead of logging in.
+- Password guesses are throttled (8 per account and 30 per IP per 10 minutes), and wrong codes lock after 5 tries (10 per hour per email).
+- Known limits: the second step is enforced by this app's routes, not by Supabase itself, and **Google sign-in does not go through it**. Someone who has the password can still call Supabase's own password endpoint directly with the public anon key and skip the code. Closing that needs Supabase-side enforcement (for example MFA with AAL2 checks, or turning off password sign-in at Supabase and keeping passwords only in this app).
+
+---
+
 ## 🔑 Forgot Password
 
-Sign In → **Forgot password?** → enter email → `POST /api/auth/forgot` creates a Supabase recovery token (admin API) and emails the link through the app's own SMTP/Resend sender using `lib/email/password-reset.html` → the link opens `/auth/confirm` (verifies the token, sets the session) → `/reset-password` asks for **New password** and **Confirm new password**.
+Sign In → **Forgot password?** → enter email → `POST /api/auth/forgot` creates a Supabase recovery token (admin API) and emails the link through the app's own SMTP/Resend sender using `lib/email/password-reset.html` → the link opens `/auth/confirm`, which shows a **Continue** button (so mail scanners that pre-fetch links can't consume the one-time token); clicking it verifies the token and sets the session → `/reset-password` asks for **New password** and **Confirm new password**.
 
 Requirements: `SUPABASE_SERVICE_ROLE_KEY`, working `SMTP_*` (or Resend) settings, and `NEXT_PUBLIC_APP_URL` set to the site's real URL (the emailed link is built from it). Supabase's own SMTP/email templates are **not** used. Without Supabase configured the form shows a demo message and sends nothing.
 
@@ -154,7 +185,7 @@ Requirements: `SUPABASE_SERVICE_ROLE_KEY`, working `SMTP_*` (or Resend) settings
 │   ├── ProjectSelector.jsx            # Multi-site project switcher
 │   └── SubmissionModal.jsx            # Record live URLs & notes
 ├── data/
-│   └── backlinks.json                 # 194 curated sources
+│   └── backlinks.json                 # 192 curated sources
 ├── lib/
 │   ├── data/sources.js                # Sources helper & constants
 │   ├── otp-store.js                   # OTP storage (Supabase RPC / memory fallback)

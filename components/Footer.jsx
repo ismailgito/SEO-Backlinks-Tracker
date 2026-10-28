@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { ArrowRight, Globe, Shield, Terminal } from 'lucide-react';
+import { INITIAL_SOURCES } from '@/lib/data/sources';
+import { FREE_LIMIT } from '@/lib/storage';
 
 export default function Footer({ onScrollToTop, showBackToTop = true }) {
   return (
@@ -15,7 +17,7 @@ export default function Footer({ onScrollToTop, showBackToTop = true }) {
             </h4>
             <div className="w-10 h-0.5 bg-[#0B6B4F] dark:bg-[#10B981] mb-4"></div>
             <p className="text-xs text-[#666666] dark:text-[#9CA3AF] leading-relaxed mb-4 max-w-sm">
-              An open-source inventory of 195+ free directory submission sites, AI tool directories, and startup launch platforms sorted by Domain Rating (DR).
+              An open-source inventory of {INITIAL_SOURCES.length} free directory submission sites, AI tool directories, and startup launch platforms sorted by Domain Rating (DR).
             </p>
             <div className="text-[11px] text-[#888888] dark:text-[#6B7280] font-mono">
               2026 EDITION · ZERO SPAM GUARANTEE
@@ -30,7 +32,7 @@ export default function Footer({ onScrollToTop, showBackToTop = true }) {
                 <div className="font-bold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-wider text-[11px]">
                   DATA SOURCE
                 </div>
-                <div>194 Curated Repositories</div>
+                <div>{INITIAL_SOURCES.length} Curated Repositories</div>
               </div>
             </div>
 
@@ -40,7 +42,7 @@ export default function Footer({ onScrollToTop, showBackToTop = true }) {
                 <div className="font-bold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-wider text-[11px]">
                   RULES ENGINE
                 </div>
-                <div>5 Free Secured Links · Full Audit Trail · UTC Storage</div>
+                <div>{FREE_LIMIT} Free Secured Links · Full Audit Trail · UTC Storage</div>
               </div>
             </div>
 
@@ -50,7 +52,7 @@ export default function Footer({ onScrollToTop, showBackToTop = true }) {
                 <div className="font-bold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-wider text-[11px]">
                   DEVELOPER APIS READY
                 </div>
-                <div>Supabase SSR + Postgres + Resend OTP</div>
+                <div>Supabase Auth + Email OTP · Progress saved in your browser</div>
               </div>
             </div>
           </div>

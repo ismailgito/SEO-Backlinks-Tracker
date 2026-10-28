@@ -367,7 +367,7 @@
     "categories": [
       "General",
       "New",
-      "Phone Number Verficiation"
+      "Phone Number Verification"
     ],
     "source_follow_status": "unverified",
     "submission_url": "https://ezlocal.com/free-business-listing/?refs=ezhome",
@@ -2211,19 +2211,6 @@
     "source_list_reference": "Backlinks.md (2026 Edition)"
   },
   {
-    "id": "bl-163-startup88",
-    "name": "Startup88",
-    "dr": 24,
-    "dr_band": "20–29",
-    "categories": [
-      "General"
-    ],
-    "source_follow_status": "unverified",
-    "submission_url": "https://startup88.typeform.com/to/CRjWqM?typeform-source=startup88.com",
-    "domain": "startup88.typeform.com",
-    "source_list_reference": "Backlinks.md (2026 Edition)"
-  },
-  {
     "id": "bl-164-startups-fyi",
     "name": "Startups.fyi",
     "dr": 24,
@@ -2344,19 +2331,6 @@
     "source_list_reference": "Backlinks.md (2026 Edition)"
   },
   {
-    "id": "bl-173-startup-collections",
-    "name": "Startup Collections",
-    "dr": 21,
-    "dr_band": "20–29",
-    "categories": [
-      "Software"
-    ],
-    "source_follow_status": "nofollow",
-    "submission_url": "https://startupcollections.com/submit-product/",
-    "domain": "startupcollections.com",
-    "source_list_reference": "Backlinks.md (2026 Edition)"
-  },
-  {
     "id": "bl-174-lachief",
     "name": "Lachief",
     "dr": 19,
@@ -2403,7 +2377,6 @@
     "dr": 18,
     "dr_band": "10–19",
     "categories": [
-      "Dofollow",
       "New"
     ],
     "source_follow_status": "dofollow",

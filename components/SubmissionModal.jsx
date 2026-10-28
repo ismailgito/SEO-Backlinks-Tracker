@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { X, ExternalLink, Calendar, CheckCircle2, ShieldAlert } from 'lucide-react';
 import { STATUS_LABELS } from '@/lib/data/sources';
 import confetti from 'canvas-confetti';
+import useModal from '@/components/useModal';
 
 export default function SubmissionModal({
   isOpen,
@@ -11,6 +12,7 @@ export default function SubmissionModal({
   source,
   currentSubmission,
   onSave,
+  initialStatus = null,
 }) {
   const [status, setStatus] = useState('unsubmitted');
   const [liveUrl, setLiveUrl] = useState('');
@@ -20,18 +22,25 @@ export default function SubmissionModal({
   useEffect(() => {
     if (source) {
       const sub = currentSubmission || {};
-      setStatus(sub.status || 'unsubmitted');
+      setStatus(initialStatus || sub.status || 'unsubmitted');
       setLiveUrl(sub.live_url || '');
       setNotes(sub.notes || '');
       setErrorMsg('');
     }
-  }, [source, currentSubmission]);
+  }, [source, currentSubmission, initialStatus]);
+
+  const dialogRef = useModal(isOpen && Boolean(source), onClose);
 
   if (!isOpen || !source) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrorMsg('');
+
+    if (status === 'secured' && !liveUrl.trim()) {
+      setErrorMsg('Add the live URL where your backlink appears before marking this Secured.');
+      return;
+    }
 
     const result = onSave({
       source,
@@ -65,10 +74,19 @@ export default function SubmissionModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-[#F7F7F7] dark:bg-[#141619] border border-[#111111] dark:border-[#26292E] max-w-lg w-full p-6 sm:p-8 shadow-2xl relative transition-colors">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="submission-modal-title"
+        tabIndex={-1}
+        className="bg-[#F7F7F7] dark:bg-[#141619] border border-[#111111] dark:border-[#26292E] max-w-lg w-full p-6 sm:p-8 shadow-2xl relative transition-colors max-h-[90vh] overflow-y-auto focus:outline-none"
+      >
         {/* Close Button */}
         <button
+          type="button"
           onClick={onClose}
+          aria-label="Close dialog"
           className="absolute right-4 top-4 text-[#888888] dark:text-[#9CA3AF] hover:text-[#111111] dark:hover:text-[#F3F4F6] p-1 transition-colors"
         >
           <X className="w-5 h-5" />
@@ -79,7 +97,7 @@ export default function SubmissionModal({
           <div className="text-[11px] font-bold text-[#0B6B4F] dark:text-[#10B981] uppercase tracking-widest-editorial mb-1">
             SUBMISSION TRACKER
           </div>
-          <h2 className="text-2xl font-extrabold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-tight">
+          <h2 id="submission-modal-title" className="text-2xl font-extrabold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-tight">
             {source.name}
           </h2>
           <div className="flex items-center space-x-3 text-xs text-[#888888] dark:text-[#9CA3AF] font-mono mt-1">
@@ -113,10 +131,10 @@ export default function SubmissionModal({
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Workflow Status Selector */}
           <div>
-            <label className="block text-xs font-bold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-widest-editorial mb-2">
+            <span id="workflow-status-label" className="block text-xs font-bold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-widest-editorial mb-2">
               Workflow Status
-            </label>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            </span>
+            <div role="group" aria-labelledby="workflow-status-label" className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {['unsubmitted', 'on_progress', 'submitted', 'secured', 'rejected', 'unable'].map(
                 (st) => {
                   const isSelected = status === st;
@@ -125,6 +143,7 @@ export default function SubmissionModal({
                       type="button"
                       key={st}
                       onClick={() => setStatus(st)}
+                      aria-pressed={isSelected}
                       className={`text-xs py-2 px-3 font-semibold uppercase tracking-wider text-left transition-colors border ${
                         isSelected
                           ? st === 'secured'
@@ -143,11 +162,13 @@ export default function SubmissionModal({
 
           {/* Live Link Input */}
           <div>
-            <label className="block text-xs font-bold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-widest-editorial mb-1">
+            <label htmlFor="submission-live-url" className="block text-xs font-bold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-widest-editorial mb-1">
               Live Backlink / Listing URL {status === 'secured' && <span className="text-[#0B6B4F] dark:text-[#10B981]">*</span>}
             </label>
             <input
+              id="submission-live-url"
               type="url"
+              required={status === 'secured'}
               placeholder="https://directory.com/listing/my-product"
               value={liveUrl}
               onChange={(e) => setLiveUrl(e.target.value)}
@@ -160,10 +181,11 @@ export default function SubmissionModal({
 
           {/* Notes Input */}
           <div>
-            <label className="block text-xs font-bold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-widest-editorial mb-1">
+            <label htmlFor="submission-notes" className="block text-xs font-bold text-[#111111] dark:text-[#F3F4F6] uppercase tracking-widest-editorial mb-1">
               Submission Notes / Credentials
             </label>
             <textarea
+              id="submission-notes"
               rows={3}
               placeholder="e.g. Submitted under Marketing category; pending manual review in 3-5 days."
               value={notes}
